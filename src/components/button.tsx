@@ -6,7 +6,9 @@ interface ButtonProps {
     /** callback */
     onClick: () => void,
     /** button identification */
-    id: string
+    id: string,
+    /** hide feature*/
+    hidden?: boolean
 }
 
 const Button: FC<ButtonProps> = (props) => {
@@ -14,6 +16,7 @@ const Button: FC<ButtonProps> = (props) => {
         <button
             id={props.id}
             onClick={() => props.onClick()}
+            hidden={props.hidden}
         >
         {props.value}
         </button>

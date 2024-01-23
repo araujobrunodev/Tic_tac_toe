@@ -18,7 +18,7 @@ const Multiplayer = () => {
         <Button id="invite" value="Invite someone" onClick={() => { }}></Button>
       </Link>
       <Link to="/chat">
-        <Button id="chat" value="Chat" onClick={() => { }}></Button>
+        <Button id="chat" value="Chat" hidden={true} onClick={() => { }}></Button>
       </Link>
     </div>
 

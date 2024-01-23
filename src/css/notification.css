@@ -1,0 +1,50 @@
+#messagens {
+    position: absolute;
+
+    top: 16%;
+
+    width: 74%;
+    height: 65%;
+
+    margin-left: 14%;
+
+    background-color: #575757;
+
+    border-radius: 2%;
+}
+
+#search {
+    width: 70%;
+    height: 8.5%;
+
+    background-color: #D9D9D9;
+
+    margin-left: 6%;
+    margin-top: 6%;
+
+    font-size: 23px;
+    text-indent: 7px;
+
+    border: none;
+    border-bottom: 4px solid #FFB800;
+    border-radius: 13px 13px 0px 0px;
+}
+
+#lupa {
+    position: absolute;
+
+    top: 0.4%;
+    left: 69%;
+
+    border: none;
+    background-color: transparent;
+}
+
+#underline {
+    width: 90%;
+
+    margin-left: 15px;
+    margin-top: 10px;
+
+    border: 1.5px solid #CECECE;
+}

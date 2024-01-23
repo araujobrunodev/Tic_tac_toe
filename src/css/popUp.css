@@ -1,0 +1,100 @@
+#popUp_body {
+    position: fixed;
+
+    width: 75%;
+    height: 19%;
+
+    margin-left: 12%;
+    top: 11%;
+
+    border: 1px solid white;
+    border-radius: 0px 0px 12px 12px;
+
+    background-color: #B3B3B3;
+}
+
+#progress_body {
+    position: absolute;
+    width: 100%;
+    height: 3.4%;
+
+    background-color: gray;
+    color: orange;
+
+    
+    border-bottom: 2px solid black;
+}
+
+#progress {
+    height: 100%;
+
+    background-color: #589BFF;
+    color: orange;
+
+    
+    border-bottom: 1px solid black;
+}
+
+#_nick {
+    text-align: center;
+
+    color: #FAFF00;
+
+    font-family: "Inter", arial;
+
+    line-height: 1px;
+
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+#message {
+
+    color: #FFFFFF;
+
+    font-family: "Inter", arial;
+    font-size: 1.3rem;
+    font-weight: 550;
+
+    text-indent: 12px;
+}
+
+#accepted {
+    position: absolute;
+    width: 52%;
+    height: 20%;
+
+    color: #3C3C3C;
+
+    line-height: 1px;
+    text-indent: -11px;
+
+    margin-left: 1%;
+
+    border: 1.6px solid black;
+    background-color: #75CDFF;
+}
+
+#denied {
+    position: absolute;
+
+    width: 42%;
+    height: 20%;
+
+    color: #3C3C3C;
+
+    line-height: 1px;
+    text-indent: -11px;
+
+    margin-left: 55.5%;
+
+    border: 1.6px solid black;
+    background-color: #FF6767;
+}
+
+#denied:active,
+#accepted:active {
+    filter: grayscale(10%);
+    color: white;
+    border-color: none;
+}

@@ -1,0 +1,29 @@
+#buttons {
+    position: absolute;
+    display:inline-block;
+
+    padding-left:12.5%;
+    top: 43.3%;
+}
+
+#invite,#chat {
+    background-color: #02B3FF;
+    border: 2px solid #979797;
+
+    font-family: "Inter",arial;
+    font-weight: 600;
+    font-size: 23px;
+}
+
+#invite {
+    position: absolute;
+    
+    width: 600%;
+}
+
+#chat {
+    position: absolute;
+    top: 5.5rem;
+
+    width: 600%;
+}

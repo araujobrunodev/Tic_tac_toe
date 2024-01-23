@@ -1,0 +1,86 @@
+body {
+  background-color: #1E1E1E;
+  overflow: none;
+}
+
+/*logo*/
+.container-logo {
+  display: block;
+  color: white;
+  font-size: 5em;
+  font-family: 'Bungee Spice',monospace;
+  margin-left: 1rem;
+  user-select: none;
+}
+
+#logo1,#logo2,#logo3 {
+  margin-top: -0.2em;
+  margin-bottom: -2.6rem;
+}
+
+#logo1 {
+  color: #FFE600;
+  margin-top: -18.7rem;
+  margin-left: 3rem;
+}
+
+#logo2 {
+  color: #7825FF;
+  margin-left: 5.5rem;
+}
+
+#logo3 {
+  color: #DCDCDC;
+  margin-left: 8.5rem;
+}
+
+/*inputs*/
+
+._Inputs {
+  position: absolute;
+  display: inline-block;
+  
+  left: 5.5rem;
+  margin-top: 5.5rem;
+}
+
+#Nickname {
+  width: 70%;
+  height: 50%;
+  
+  border-style: none;
+  border-radius: 6px;
+  border-bottom: 4.5px solid #7000FF;
+
+  text-indent: 8px;
+  font-size: 1.8rem;
+}
+
+#play {
+  width: 70%;
+  height: 30%;
+  
+  font-size: 1.7rem;
+
+  color: white;
+  background-color: #7E00FD;
+
+  border: 0.6px solid white;
+
+  line-height: 0.5rem;
+
+  margin-top: 1.3rem;
+  user-select: none;
+}
+
+/* warn */
+
+#condition {
+  position:absolute;
+
+  top: 72%;
+  left: 26%;
+
+  font-size:1.3rem;
+  font-family: "Inter",arial;
+}

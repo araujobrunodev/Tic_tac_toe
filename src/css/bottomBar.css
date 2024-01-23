@@ -1,0 +1,18 @@
+#_bottomBar {
+    position: absolute;
+    top: 90%;
+
+    width: 100%;
+
+    border-top: 1px solid #445A55;
+
+    padding-top: 12px;
+}
+    
+#_bottomBar :first-child  {
+    padding-left: 15.5%;
+}
+
+#_bottomBar :first-child :first-child {
+    padding-left: 0%;
+}

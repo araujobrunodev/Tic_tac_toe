@@ -1,0 +1,40 @@
+#local-id {
+    position: absolute;
+    
+    left: 17%;
+    top: 40%;
+
+}
+
+#send-id {
+    width: 77%;
+    height: 40px;
+
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 5px solid #FF9900;
+
+    margin-bottom: 1.4rem;
+    color: black;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-indent: 7px;
+
+    background-color: white;
+}
+
+#send {
+    width: 80%;
+    height: 20%;
+
+    border-radius: 20px;
+
+    background-color: #02B3FF;
+    border: 2px solid #979797;
+
+    font-size: 19px;
+    font-family: "Inter",arial;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+}

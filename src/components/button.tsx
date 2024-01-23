@@ -3,15 +3,17 @@ import { FC } from "react"
 interface ButtonProps {
     /** valor do butão */
     value:string,
-    /** função chamada ao clicar no botão*/
-    onClick?: void | string | number
+    /** callback */
+    onClick: () => void,
+    /** button identification */
+    id: string
 }
 
 const Button: FC<ButtonProps> = (props) => {
     return (<>
         <button
-            id="play"
-            onClick={() => props.onClick}
+            id={props.id}
+            onClick={() => props.onClick()}
         >
         {props.value}
         </button>

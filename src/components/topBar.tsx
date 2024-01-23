@@ -19,7 +19,7 @@ const TopBar: FC<TopBarProps> = (props) => {
     <H1 id="NamePage" value={props.pageName}/>
 
     <Link to="/notification">
-      <img src={"/bell.png"} id="bell"/>
+      <img src={"/bell.png"} id="bell" hidden={true}/>
     </Link>
   </div>)
 }

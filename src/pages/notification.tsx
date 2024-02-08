@@ -1,12 +1,14 @@
 import TopBar from "../components/topBar";
 import BottomBar from "../components/bottomBar";
 import Input from "../components/input";
+import Disconnect from "../components/disconnect";
 import CallPopUp from "../components/callPopUp";
 import RedirectClient from "../components/redirect";
 import "../css/notification.css";
 
 const Notification = () => {
   return (<>
+    <Disconnect />
     <RedirectClient/>
     <TopBar pageName="NOTIFICATION" previousPage="/" />
 

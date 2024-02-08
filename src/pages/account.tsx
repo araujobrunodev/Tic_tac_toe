@@ -2,11 +2,13 @@ import TopBar from "../components/topBar";
 import BottomBar from "../components/bottomBar";
 import Button from "../components/button";
 import perfil from "../types/account";
+import Disconnect from "../components/disconnect";
 import RedirectClient from "../components/redirect";
 import "../css/account.css"
 
 const Account = () => {
     return (<>
+        <Disconnect />
         <RedirectClient/>
         <TopBar pageName="ACCOUNT" previousPage="/"/>
 

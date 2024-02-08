@@ -5,11 +5,13 @@ import Button from "../components/button"
 import send from "../websocket/send"
 import inviteSomeone from "../types/invite"
 import CallPopUp from "../components/callPopUp"
+import Disconnect from "../components/disconnect"
 import RedirectClient from "../components/redirect"
 import "../css/invite.css"
 
 const Invite = () => {
   return (<>
+    <Disconnect />
     <RedirectClient/>
     <TopBar pageName="INVITE" previousPage="/multiplayer" />
 

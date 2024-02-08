@@ -1,11 +1,12 @@
 import { detectDisconnection,disconnection } from "../websocket/disconnected"
 import { useEffect } from "react"
+import "../css/disconnect.css"
 
 const Disconnect = () => {
 
     useEffect(() => {
         detectDisconnection()
-    },[disconnection.state])
+    })
 
     return (<>
         <p

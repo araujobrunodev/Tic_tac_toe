@@ -4,6 +4,7 @@ import Button from "../components/button"
 import connect from "../inputs/connect"
 import H1 from "../components/title"
 import {useState} from "react"
+import Disconnect from "../components/disconnect"
 import '../css/App.css'
 
 const Main = () => {
@@ -11,6 +12,7 @@ const Main = () => {
 
   return (
     <>
+      <Disconnect />
       <RedirectClient />
 
       <div className='container-logo'>

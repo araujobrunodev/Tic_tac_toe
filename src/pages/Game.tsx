@@ -10,6 +10,7 @@ import { Info } from "../components/alert"
 import positionMarked from "../room/marked"
 import RedirectClient from "../components/redirect"
 import activeTurn from "../types/active"
+import Disconnect from "../components/disconnect"
 import AlertExit from "../components/alert2"
 import "../css/game.css"
 
@@ -19,6 +20,7 @@ export var UpdateBarGame = {
 
 const GamePage = () => {
     return (<>
+        <Disconnect />
         <RedirectClient/>
         <TopBar pageName="PLAYING" previousPage="/" />
 

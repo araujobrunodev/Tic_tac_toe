@@ -1,4 +1,4 @@
-import { createBrowserRouter,Outlet } from "react-router-dom"
+import { createHashRouter,Outlet } from "react-router-dom"
 import Main from './pages/mainPage'
 import Multiplayer from './pages/multiplayer'
 import Page404 from "./pages/page404"
@@ -7,7 +7,7 @@ import Notification from "./pages/notification"
 import Account from "./pages/account"
 import Invite from "./pages/invite"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path:"/",
     element:<Outlet/>,

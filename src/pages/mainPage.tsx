@@ -32,7 +32,7 @@ const Main = () => {
           }} />
       </div>
 
-      <H1 id="condition" value="Nick over 3 digits" hidden={active}/>
+      <H1 id="condition" value="Nickname between 3 and 8 digits. (space before 3 digits do not count)" hidden={active}/>
     </>
   )
 }

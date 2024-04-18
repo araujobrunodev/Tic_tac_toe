@@ -16,7 +16,7 @@ const connect = () => {
         }
     }
 
-    if (nick.length > 3 && !NoSpace) {
+    if (nick.length > 3 && nick.length < 8 && !NoSpace) {
         send({
             type: "CONNECT",
             msg: { player: perfil.getNickname() }

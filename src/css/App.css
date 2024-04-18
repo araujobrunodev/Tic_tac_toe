@@ -78,8 +78,10 @@ body {
 #condition {
   position:absolute;
 
+  width: 65%;
+
   top: 72%;
-  left: 26%;
+  left: 18%;
 
   font-size:1.3rem;
   font-family: "Inter",arial;

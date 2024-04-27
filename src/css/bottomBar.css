@@ -1,18 +1,13 @@
 #_bottomBar {
-    position: absolute;
-    top: 90%;
+    position: fixed;
+    display: flex;
 
-    width: 100%;
-
-    border-top: 1px solid #445A55;
-
-    padding-top: 12px;
-}
+    flex-direction: row;
+    justify-content: space-around;
     
-#_bottomBar :first-child  {
-    padding-left: 15.5%;
-}
-
-#_bottomBar :first-child :first-child {
-    padding-left: 0%;
+    width: 100%;
+    top: 91%;
+    padding-top: 12px;
+    
+    border-top: 1px solid #445A55;
 }

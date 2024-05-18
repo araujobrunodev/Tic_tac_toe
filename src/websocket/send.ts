@@ -1,5 +1,5 @@
 import encode from "./tools/encode";
-import ws from "./connect";
+import {ws} from "./connect";
 import receive from "./receive";
 
 const send = (data:object) => {

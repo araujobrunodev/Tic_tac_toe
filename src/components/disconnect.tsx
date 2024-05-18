@@ -1,23 +1,37 @@
-import { detectDisconnection } from "../websocket/disconnected"
+import { connectOrReconnect, ws } from "../websocket/connect"
 import { useEffect, useState } from "react"
 import "../css/disconnect.css"
 
-type DISCONNECTION = {
-    url: string,
-    state: boolean
-}
+const limitToReconnect = 3
 
 const Disconnect = () => {
-    let [disconnection,setDisconnection] = useState<DISCONNECTION>(detectDisconnection())
-
+    let [tryReconnect,setTryReconnect] = useState<number>(0)
+    let [hidden, setHidden] = useState<boolean>(true)
+    
     useEffect(() => {
-        if (disconnection.state) 
-            console.log("disconnected:",disconnection)
-    },[disconnection.state])
+        let connected = ws.readyState == ws.OPEN
+
+        if (connected) {
+            setTryReconnect(0)
+            return setHidden(true)
+        } else setHidden(false)
+        
+        if (tryReconnect == limitToReconnect) return;
+
+        let time = setTimeout(() => {
+            if (ws.readyState == ws.CLOSED) {
+                connectOrReconnect(true)
+                setTryReconnect(++tryReconnect)
+                console.log("try reconnect:", tryReconnect)
+            }
+        }, 1000 * 10)
+
+        return () => clearTimeout(time)
+    })
 
     return (<>
         <p
-        hidden={!disconnection.state}
+        hidden={hidden}
         id="disconnect_p"
         >
         the website can't communicate with the server.

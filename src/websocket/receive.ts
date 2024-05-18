@@ -1,4 +1,4 @@
-import ws from "./connect";
+import {ws} from "./connect";
 import decode from "./tools/decode";
 import mensagens from "./mensagens";
 import { receiverProperty } from "../types/receive";

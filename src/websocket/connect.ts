@@ -1,9 +1,23 @@
 const url = `wss://${"backend-ommm.onrender.com"}`;
-const ws = new WebSocket(url);
+let ws = new WebSocket(url);
 
-console.log("url:",url)
-ws.onopen = () => {
-    console.log(`connecting in ${url}`);
+function connectOrReconnect (reconnect: boolean = false) {
+    switch (reconnect) {
+        case false:
+            ws.onopen = () => {
+                console.log(`connecting in ${url}`);
+            }
+            break;
+
+        case true:
+            ws = new WebSocket(url)
+
+            ws.onopen = () => {
+                console.log(`reconnecting in ${url}`);
+            }
+            break;
+    }
 }
 
-export default ws;
+
+export {ws, connectOrReconnect};

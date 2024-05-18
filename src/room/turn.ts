@@ -3,7 +3,7 @@ import activeTurn from "../types/active";
 import currentBegin from "../types/activebegin";
 import callInfo from "../types/callAlert";
 import currentRoom from "../types/room";
-import ws from "../websocket/connect";
+import {ws} from "../websocket/connect";
 import send from "../websocket/send";
 import "./winner";
 

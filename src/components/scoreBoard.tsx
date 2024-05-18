@@ -14,7 +14,6 @@ const ScoreBoard = () => {
 
   useEffect(() => {
     let time = setInterval(() => {
-      console.log("opponent nick:",currentRoom.opponent.nick)
       currentRoom.opponent.nick.length > 3 ? active.setScoreBoard(true) : active.setScoreBoard(false);
       if (!updatePlaceBorder.update) return;
 

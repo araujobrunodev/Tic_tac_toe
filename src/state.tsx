@@ -1,4 +1,4 @@
-import { connectOrReconnect } from "./websocket/connect.js";
+import { connect } from "./websocket/connect.js";
 import {RouterProvider} from "react-router-dom";
 import {ActiveComponent} from "./globalState";
 import {useState} from "react";
@@ -10,7 +10,7 @@ const State = () => {
         setActive(score);
     }
 
-    connectOrReconnect()
+    connect()
 
     return (<>
         <ActiveComponent.Provider value={{ScoreBoard:active,setScoreBoard:setScoreBoard}}>

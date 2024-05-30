@@ -1,12 +1,11 @@
-import { connectOrReconnect, ws } from "../websocket/connect"
+import { ws } from "../websocket/connect"
 import { useEffect, useState } from "react"
 import "../css/disconnect.css"
-
-const limitToReconnect = 3
 
 const Disconnect = () => {
     let [tryReconnect,setTryReconnect] = useState<number>(0)
     let [hidden, setHidden] = useState<boolean>(true)
+    let lossOfConnection = sessionStorage.getItem("loss_of_connection")
     
     useEffect(() => {
         let connected = ws.readyState == ws.OPEN
@@ -16,15 +15,19 @@ const Disconnect = () => {
             return setHidden(true)
         } else setHidden(false)
         
-        if (tryReconnect == limitToReconnect) return;
+        if (lossOfConnection != undefined && Number(lossOfConnection) == 4) {
+            sessionStorage.setItem("loss_of_connection", "0")
+            return window.location.reload()
+        }
 
         let time = setTimeout(() => {
             if (ws.readyState == ws.CLOSED) {
-                connectOrReconnect(true)
+                
                 setTryReconnect(++tryReconnect)
+                sessionStorage.setItem("loss_of_connection",tryReconnect.toString())
                 console.log("try reconnect:", tryReconnect)
             }
-        }, 1000 * 10)
+        }, 1000 * 15)
 
         return () => clearTimeout(time)
     })
@@ -34,7 +37,7 @@ const Disconnect = () => {
         hidden={hidden}
         id="disconnect_p"
         >
-        the website can't communicate with the server.
+        Server is down. Please reflesh the page or try again later.
         </p>
     </>)
 }

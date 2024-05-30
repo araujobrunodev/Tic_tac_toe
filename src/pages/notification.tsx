@@ -4,13 +4,21 @@ import Input from "../components/input";
 import Disconnect from "../components/disconnect";
 import CallPopUp from "../components/callPopUp";
 import RedirectClient from "../components/redirect";
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/notification.css";
 
 const Notification = () => {
+  let page = usePage()
+
+  useEffect(() => {
+      page.setName("NOTIFICATION")
+      page.setOpenBars(true)
+  },[])
+
   return (<>
     <Disconnect />
     <RedirectClient/>
-    <TopBar pageName="NOTIFICATION" previousPage="/" />
 
     <CallPopUp/>
 
@@ -22,8 +30,6 @@ const Notification = () => {
 
       <div id="underline"></div>
     </div>
-
-    <BottomBar />
   </>)
 }
 

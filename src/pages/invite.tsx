@@ -7,13 +7,21 @@ import inviteSomeone from "../types/invite"
 import CallPopUp from "../components/callPopUp"
 import Disconnect from "../components/disconnect"
 import RedirectClient from "../components/redirect"
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/invite.css"
 
 const Invite = () => {
+  let page = usePage()
+
+  useEffect(() => {
+      page.setName("INVITE")
+      page.setOpenBars(true)
+  },[])
+
   return (<>
     <Disconnect />
     <RedirectClient/>
-    <TopBar pageName="INVITE" previousPage="/multiplayer" />
 
     <CallPopUp/>
 
@@ -28,8 +36,6 @@ const Invite = () => {
         })
       }} />
     </div>
-
-    <BottomBar />
   </>)
 }
 

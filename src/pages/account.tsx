@@ -1,16 +1,22 @@
-import TopBar from "../components/topBar";
-import BottomBar from "../components/bottomBar";
 import Button from "../components/button";
 import perfil from "../types/account";
 import Disconnect from "../components/disconnect";
 import RedirectClient from "../components/redirect";
+import { usePage } from "../types/page";
+import { useEffect } from "react";
 import "../css/account.css"
 
 const Account = () => {
+    let page = usePage()
+
+    useEffect(() => {
+        page.setName("ACCOUNT")
+        page.setOpenBars(true)
+    },[])
+
     return (<>
         <Disconnect />
         <RedirectClient/>
-        <TopBar pageName="ACCOUNT" previousPage="/"/>
 
         <div id="_info"> 
             <div id="name">
@@ -30,8 +36,6 @@ const Account = () => {
                 }}></Button>
             </div>
         </div>
-
-        <BottomBar/>
     </>)
 }
 

@@ -12,6 +12,8 @@ import RedirectClient from "../components/redirect"
 import activeTurn from "../types/active"
 import Disconnect from "../components/disconnect"
 import AlertExit from "../components/alert2"
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/game.css"
 
 export var UpdateBarGame = {
@@ -19,10 +21,16 @@ export var UpdateBarGame = {
 }
 
 const GamePage = () => {
+    let page = usePage()
+
+    useEffect(() => {
+        page.setName("PLAYING")
+        page.setOpenBars(true)
+    },[])
+
     return (<>
         <Disconnect />
         <RedirectClient/>
-        <TopBar pageName="PLAYING" previousPage="/" />
 
         <ScoreBoard />        
 
@@ -174,8 +182,6 @@ const GamePage = () => {
 
         <Info/>
         <AlertExit/>
-
-        <BottomBar />
     </>)
 }
 

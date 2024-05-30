@@ -6,9 +6,16 @@ import H1 from "../components/title"
 import {useState} from "react"
 import Disconnect from "../components/disconnect"
 import '../css/App.css'
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 
 const Main = () => {
   let [active,setActive] = useState(true);
+  let page = usePage()
+
+  useEffect(() => {
+      page.setOpenBars(true)
+  },[])
 
   return (
     <>

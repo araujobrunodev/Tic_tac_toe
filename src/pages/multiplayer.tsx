@@ -6,12 +6,20 @@ import BottomBar from "../components/bottomBar";
 import Disconnect from "../components/disconnect";
 import RedirectClient from "../components/redirect";
 import "../css/multiplayerButton.css"
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 
 const Multiplayer = () => {
+  let page = usePage()
+
+  useEffect(() => {
+      page.setName("MULTIPLAYER")
+      page.setOpenBars(true)
+  },[])
+
   return (<>
     <Disconnect />
     <RedirectClient/>
-    <TopBar pageName="MULTIPLAYER" previousPage="/" />
 
     <CallPopUp/>
 
@@ -23,8 +31,6 @@ const Multiplayer = () => {
         <Button id="chat" value="Chat" hidden={true} onClick={() => { }}></Button>
       </Link>
     </div>
-
-    <BottomBar />
   </>)
 }
 

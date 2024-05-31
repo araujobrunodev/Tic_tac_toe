@@ -1,29 +1,23 @@
 #buttons {
-    position: absolute;
-    display:inline-block;
+    display: flex;
+    flex-direction: column;
+    height: 12.5rem;
+    gap: 74px;
+    padding-top: 55%;
+    padding: 55% 50px 0px 50px;
+}
 
-    padding-left:12.5%;
-    top: 43.3%;
+.multiplayer_button {
+    display: flex;
+    flex: 1;
 }
 
 #invite,#chat {
     background-color: #02B3FF;
     border: 2px solid #979797;
-
+    padding: 0px;
     font-family: "Inter",arial;
     font-weight: 600;
     font-size: 23px;
-}
-
-#invite {
-    position: absolute;
-    
-    width: 600%;
-}
-
-#chat {
-    position: absolute;
-    top: 5.5rem;
-
-    width: 600%;
+    flex: 1;
 }

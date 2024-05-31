@@ -15,10 +15,10 @@ const Multiplayer = () => {
 
   return (<>
     <div id="buttons">
-      <Link to="/invite">
+      <Link className="multiplayer_button" to="/invite">
         <Button id="invite" value="Invite someone" onClick={() => { }}></Button>
       </Link>
-      <Link to="/chat">
+      <Link className="multiplayer_button" to="/chat">
         <Button id="chat" value="Chat" hidden={true} onClick={() => { }}></Button>
       </Link>
     </div>

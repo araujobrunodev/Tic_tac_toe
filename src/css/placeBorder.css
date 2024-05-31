@@ -1,16 +1,10 @@
 #warn {
     display: flex;
-    position: absolute;
-    
     justify-content: center;
-    flex-direction: row;
-
-    top: 10%;
-    left: 11%;
-
     font-family: "Inter",arial;
     font-size: 24px;
     white-space: nowrap;
+    margin-top: 20px;
 }
 
 #place_border {

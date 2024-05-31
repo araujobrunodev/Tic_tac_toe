@@ -1,11 +1,7 @@
 .container {
-    position: absolute;
-
     width: 20rem;
     height: 23rem;
-
-    left: 1.7rem;
-    top: 27%;
+    margin-left: 5%;
 }
 
 .coll {
@@ -28,7 +24,6 @@
 
 .cubo {
     flex: 1;
-
     border: 6.5px solid #7E7E7E;
 }
 
@@ -48,7 +43,7 @@
     border-bottom: none;
 }
 
-@media only screen and (max-width: 412px) and (max-height: 928px) {
+/* @media only screen and (max-width: 412px) and (max-height: 928px) {
     .container {
         left: 2.7rem;
     }
@@ -58,4 +53,4 @@
     .container {
         left: 1.2rem;
     }
-}
+} */

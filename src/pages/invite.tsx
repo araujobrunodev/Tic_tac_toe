@@ -1,5 +1,3 @@
-import TopBar from "../components/topBar"
-import BottomBar from "../components/bottomBar"
 import Input from "../components/input"
 import Button from "../components/button"
 import send from "../websocket/send"
@@ -20,11 +18,6 @@ const Invite = () => {
   },[])
 
   return (<>
-    <Disconnect />
-    <RedirectClient/>
-
-    <CallPopUp/>
-
     <div id="local-id">
       <Input id="send-id" value="" placeholder="Identification"/>
       <Button id="send" value="send" onClick={() => {

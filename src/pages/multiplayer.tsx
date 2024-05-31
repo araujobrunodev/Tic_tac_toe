@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom"
-import TopBar from "../components/topBar";
 import Button from "../components/button";
-import CallPopUp from "../components/callPopUp";
-import BottomBar from "../components/bottomBar";
-import Disconnect from "../components/disconnect";
 import RedirectClient from "../components/redirect";
 import "../css/multiplayerButton.css"
 import { useEffect } from "react";
@@ -18,11 +14,6 @@ const Multiplayer = () => {
   },[])
 
   return (<>
-    <Disconnect />
-    <RedirectClient/>
-
-    <CallPopUp/>
-
     <div id="buttons">
       <Link to="/invite">
         <Button id="invite" value="Invite someone" onClick={() => { }}></Button>

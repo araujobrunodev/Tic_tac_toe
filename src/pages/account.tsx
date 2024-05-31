@@ -1,6 +1,5 @@
 import Button from "../components/button";
 import perfil from "../types/account";
-import Disconnect from "../components/disconnect";
 import RedirectClient from "../components/redirect";
 import { usePage } from "../types/page";
 import { useEffect } from "react";
@@ -15,9 +14,6 @@ const Account = () => {
     },[])
 
     return (<>
-        <Disconnect />
-        <RedirectClient/>
-
         <div id="_info"> 
             <div id="name">
                 Name: <span id="value-name">{

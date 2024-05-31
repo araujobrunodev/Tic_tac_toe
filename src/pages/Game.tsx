@@ -1,5 +1,3 @@
-import TopBar from "../components/topBar"
-import BottomBar from "../components/bottomBar"
 import BarGame from "../components/barGame"
 import ScoreBoard from "../components/scoreBoard"
 import positions from "../types/position"
@@ -10,7 +8,6 @@ import { Info } from "../components/alert"
 import positionMarked from "../room/marked"
 import RedirectClient from "../components/redirect"
 import activeTurn from "../types/active"
-import Disconnect from "../components/disconnect"
 import AlertExit from "../components/alert2"
 import { useEffect } from "react";
 import { usePage } from "../types/page";
@@ -29,9 +26,6 @@ const GamePage = () => {
     },[])
 
     return (<>
-        <Disconnect />
-        <RedirectClient/>
-
         <ScoreBoard />        
 
         <BarGame

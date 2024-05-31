@@ -1,8 +1,4 @@
-import TopBar from "../components/topBar";
-import BottomBar from "../components/bottomBar";
 import Input from "../components/input";
-import Disconnect from "../components/disconnect";
-import CallPopUp from "../components/callPopUp";
 import RedirectClient from "../components/redirect";
 import { useEffect } from "react";
 import { usePage } from "../types/page";
@@ -17,10 +13,7 @@ const Notification = () => {
   },[])
 
   return (<>
-    <Disconnect />
     <RedirectClient/>
-
-    <CallPopUp/>
 
     <div id="messagens">
       <Input value="" placeholder="Serach someone" id="search" />

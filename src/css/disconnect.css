@@ -1,19 +1,8 @@
 #disconnect_p {
-
-    width: 80%;
-    height: 70px;
-
-    top: 80%;
-    left: 8%;
-
     color: red;
-
-    line-height: 60px;
+    line-height: 26px;
     text-align: center;
-
-    padding-left: 10px;
-    padding-right: 10px;
-
-    border-radius: 26px;
+    border-radius: 13px;
     background-color: #545454;
+    margin: 0px 45px;    
 }

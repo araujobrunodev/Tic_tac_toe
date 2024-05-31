@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom"
+import { FC } from "react"
 import "../css/bottomBar.css"
 
-const BottomBar = () => {
-  return (<div id="_bottomBar">
+interface BottomBarProps {
+  hidden: boolean
+}
+
+const BottomBar: FC<BottomBarProps> = ({
+  hidden
+}) => {
+  return (
+    <>{hidden && <div id="_bottomBar">
 
     <Link to="/multiplayer">
       <img src={"/carta.png"} />
@@ -16,7 +24,8 @@ const BottomBar = () => {
       <img src={"/person.png"} />
     </Link>
 
-  </div>)
+  </div>}</>
+  )
 }
 
 export default BottomBar;

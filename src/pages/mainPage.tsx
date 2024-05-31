@@ -14,7 +14,7 @@ const Main = () => {
   let page = usePage()
 
   useEffect(() => {
-      page.setOpenBars(true)
+      page.setOpenBars(false)
   },[])
 
   return (

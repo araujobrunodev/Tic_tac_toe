@@ -15,11 +15,13 @@ const MainContainer: FC<MainContainerProps> = ({
     
     return (
         <div className="main_container">
-            <TopBar pageName={Page.name} previousPage="/"/>
+            <TopBar hidden={Page.OpenBars} pageName={Page.name} previousPage="/"/>
             
-            {page}
+            <div className="main">
+                {page}
+            </div>
 
-            <BottomBar />
+            <BottomBar hidden={Page.OpenBars}/>
         </div>
     )
 }

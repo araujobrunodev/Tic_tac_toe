@@ -40,45 +40,46 @@ const Index = () => {
     let exit = useExit()
 
     useEffect(() => {
-        if (ws.readyState == ws.OPEN) {
-            ws.addEventListener("message", (receivedata) => {
-                let decodeData = decode(receivedata.data as string) as receiverProperty;
-                setProperty(decodeData)
-            })
-        }
+        if (ws.readyState == ws.CLOSED ||
+            ws.readyState == ws.CLOSING ||
+            ws == undefined) return;
+        
+        ws.addEventListener("message", (receivedata) => {
+            let decodeData = decode(receivedata.data as string) as receiverProperty;
+            setProperty(decodeData)
+        })
     })
 
     useEffect(() => {
         switch (property.type) {
             case "CONNECTED":
                 let uuid = (property.msg as msgUUid).uuid
-                status.setUuid(uuid)
+                status.setUuid(status.uuid = uuid)
                 break;
 
             case "INVITE":
                 let inviteByPlayer = property.msg as invitePlayer
-                invite.nick = inviteByPlayer.nick;
-                invite.uuid = inviteByPlayer.uuid;
+                invite.setNick(invite.nick = inviteByPlayer.nick);
+                invite.setUuid(invite.uuid = inviteByPlayer.uuid);
 
-                dataPopUp.nick = invite.nick;
-                dataPopUp.hidden = false;
-                dataPopUp.type = "invite";
-                dataPopUp.message = inviteByPlayer.value;
-                dataPopUp.id = invite.uuid;
+                dataPopUp.setNick(dataPopUp.nick = invite.nick);
+                dataPopUp.setHidden(dataPopUp.hidden = false);
+                dataPopUp.setType(dataPopUp.type = "invite");
+                dataPopUp.setMessage(dataPopUp.message = inviteByPlayer.value);
+                dataPopUp.setId(dataPopUp.id = invite.uuid);
 
                 Redirect.value = true;
                 if (location.pathname != "/multiplayer")
                     Redirect.to = "multiplayer";
                 else 
                     Redirect.to = "invite";
-                console.log("invited", property)
                 break;
 
             case "DENIED":
-                dataPopUp.nick = property.msg as string;
-                dataPopUp.hidden = false;
-                dataPopUp.type = "";
-                dataPopUp.message = "refused your invite";
+                dataPopUp.setNick(dataPopUp.nick = property.msg as string);
+                dataPopUp.setHidden(dataPopUp.hidden = false);
+                dataPopUp.setType(dataPopUp.type = "");
+                dataPopUp.setMessage(dataPopUp.message = "refused your invite");
 
                 play.playing = false;
                 updatePlaceBorder.update = true;
@@ -86,8 +87,8 @@ const Index = () => {
 
             case "ACCEPTED":
                 let receiveAccepeted = property.msg as playerType
-                opponent.nick = receiveAccepeted.nick
-                opponent.uuid = receiveAccepeted.uuid
+                opponent.setNick(opponent.nick = receiveAccepeted.nick)
+                opponent.setUuid(opponent.uuid = receiveAccepeted.uuid)
                 Redirect.value = true;
                 Redirect.to = "playing";
                 bs.state = true;
@@ -101,7 +102,7 @@ const Index = () => {
                 break;
 
             case "PING":
-                status.setAvailable(true);
+                status.setAvailable(status.available = true);
                 send({
                     type:"PONG",
                     msg: {
@@ -116,20 +117,20 @@ const Index = () => {
                 bs.state = false;
 
                 if (receiveTurn.nick == status.nick) {
-                    status.setYourTurn(true);
-                    info.active = true;
-                    info.message = receiveTurn.value;
+                    status.setYourTurn(status.yourTurn = true);
+                    info.setActive(info.active = true);
+                    info.setMessage(info.message = receiveTurn.value);
                 
                     if (receiveTurn.beginningOfTheGame == true) {
-                        status.setMark("X");
-                        opponent.setMark("O");
+                        status.setMark(status.mark = "X");
+                        opponent.setMark(opponent.mark = "O");
                     } else if (receiveTurn.beginningOfTheGame == false && status.mark == "") {
-                        status.setMark("O");
-                        opponent.setMark("X");
+                        status.setMark(status.mark = "O");
+                        opponent.setMark(opponent.mark = "X");
                     }
                 } else {
-                    status.setYourTurn(false);
-                    info.active = false;
+                    status.setYourTurn(status.yourTurn = false);
+                    info.setActive(info.active = false);
                 }
             
                 currentBegin.state = false;
@@ -150,12 +151,12 @@ const Index = () => {
 
                 if (status.nick == receiveState.winner) { 
                     placeBorder.setYou(++placeBorder.you);
-                    status.setMark("");
+                    status.setMark(status.mark = "");
                     playersTurn("begin", status.mark, opponent.uuid);
                 }
                 if (status.nick == receiveState.loser) {
                     placeBorder.setOpponent(++placeBorder.opponnet);
-                    status.setMark("");
+                    status.setMark(status.mark = "");
                 }
                 break;
 
@@ -171,35 +172,36 @@ const Index = () => {
 
                 if (status.mark == "X") playersTurn("begin", status.mark, opponent.uuid);
 
-                status.setMark("");
+                status.setMark(status.mark = "");
                 break;
 
             case "EXIT":
                 let receiveExit = property.msg as exitProperty
-                status.setMark("");
-                status.setYourTurn(false);
+                status.setMark(status.mark = "");
+                status.setYourTurn(status.yourTurn = false);
 
-                opponent.setNick("");
-                opponent.setUuid("");
+                opponent.setNick(opponent.nick = "");
+                opponent.setUuid(opponent.uuid = "");
 
-                placeBorder.setOpponent(0);
-                placeBorder.setTies(0);
-                placeBorder.setYou(0);
+                placeBorder.setOpponent(placeBorder.opponnet = 0);
+                placeBorder.setTies(placeBorder.ties = 0);
+                placeBorder.setYou(placeBorder.you = 0);
 
-                exit.setMsg(`${receiveExit.nick} ${receiveExit.value}`)
-                exit.setState(true);
-                exit.setUpdate(true);
-                info.setActive(false);
+                exit.setMsg(exit.msg  = `${receiveExit.nick} ${receiveExit.value}`)
+                exit.setState(exit.state = true);
+                exit.setUpdate(exit.update = true);
+                info.setActive(info.active = false);
 
                 setTimeout(() => {
-                    exit.setState(false);
-                    exit.setUpdate(true);
+                    exit.setState(exit.state = false);
+                    exit.setUpdate(exit.update = true);
                 },1000 * 10)
 
                 clearPositions();
                 break;
         }
     },[property.type])
+
     return (
         <RouterProvider router={router}/>
     )

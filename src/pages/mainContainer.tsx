@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react"
 import TopBar from "../components/topBar"
 import BottomBar from "../components/bottomBar"
 import Disconnect from "../components/disconnect"
-import CallPopUp from "../components/callPopUp"
+import PopUp from "../components/popUp"
 import { usePage } from "../types/page"
 import RedirectClient from "../components/redirect"
 import "../css/mainContainer.css"
@@ -21,7 +21,7 @@ const MainContainer: FC<MainContainerProps> = ({
             <TopBar hidden={Page.OpenBars} pageName={Page.name} previousPage="/"/>
             
             <RedirectClient/>
-            <CallPopUp />
+            <PopUp />
 
             <div className="main">
                 {page}

@@ -5,7 +5,6 @@ import receive from "./websocket/receive.js";
 
 const State = () => {
     connect()
-    receive()
 
     return (
         <CreateGlobal children={<Index />}/>

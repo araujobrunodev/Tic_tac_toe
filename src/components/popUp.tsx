@@ -6,90 +6,87 @@ import { useDataPopUp } from "../types/dataPopUp";
 import send from "../websocket/send";
 import { useOpponent } from "../types/room";
 import "../css/popUp.css"
+import { useActiveComponent } from "../globalState";
 
-interface PopUpProp {
-  /** type of message*/
-  type: string,
-  /** appear popup*/
-  hidden: boolean,
-  /** player name*/
-  nick: string,
-  /** message*/
-  message: string,
-  /** player identification*/
-  uuid: string
-}
-
-const PopUp: FC<PopUpProp> = (prop) => {
-  let [active, setActive] = useState(prop.hidden)
+const PopUp = () => {
   let [progress, setProgress] = useState(0)
   let [height, setHeight] = useState(0);
   let opponent = useOpponent()
   let dataPopUp = useDataPopUp()
+  let active = useActiveComponent()
+
+  const clearPopUp = () => {
+    dataPopUp.setHidden(dataPopUp.hidden = true)
+    dataPopUp.setId(dataPopUp.id = "")
+    dataPopUp.setMessage(dataPopUp.message = "")
+    dataPopUp.setNick(dataPopUp.nick = "")
+    dataPopUp.setType(dataPopUp.type = "")
+  } 
 
   useEffect(() => {
-    if (progress == 5) { setProgress(0); setActive(true); dataPopUp.setHidden(true) }
-    if (active == true) return;
+  if (progress == 5) { setProgress(0); clearPopUp() }
 
-    prop.type == "invite" ? setHeight(19) : setHeight(13);
+    dataPopUp.type == "invite" ? setHeight(19) : setHeight(13);
 
     let time = setInterval(() => {
-      setProgress(progress += 1);
-    }, 1000);
+      setProgress(++progress);
+    }, 1000 * 4);
 
     return () => clearInterval(time);
-  }, [progress])
+  }, [progress, dataPopUp.hidden])
 
   return (
     <>{
-      !active && 
+      !dataPopUp.hidden && 
         <div id="popUp_body" style={{ height: height + "%" }}>
         <div id="progress_body">
-          <div id="progress" style={{ width: +100 - (progress * 20) + "%" }}></div>
+          <div id="progress" style={{ width: 100 - (progress * 20) + "%" }}></div>
         </div>
       
-        <p id="_nick">{prop.nick}</p>
-        <p id="message">{prop.message}</p>
+        <p id="_nick">{dataPopUp.nick}</p>
+        <p id="message">{dataPopUp.message}</p>
       
-        {prop.type == "invite" ? <>
-          <Link to="/playing">
+        <div className="buttons">
+          {dataPopUp.type == "invite" && <>
+            <Link id="link_button" to="/playing">
+              <Button
+                id="accepted"
+                value="Accepted"
+                onClick={() => {
+                  setProgress(5);
+
+                  setTimeout(() => {
+                    opponent.setNick(opponent.nick = dataPopUp.nick)
+                    opponent.setUuid(opponent.uuid = dataPopUp.id)
+                    active.setScoreBoard(true)
+                    clearPopUp()
+                  },1000 * 2)
+                
+                  send({
+                    type: "ACCEPTED",
+                    msg: { uuid: dataPopUp.id }
+                  })
+                }}
+              />
+            </Link>
+              
             <Button
-              id="accepted"
-              value="Accepted"
+              id="denied"
+              value="Denied"
               onClick={() => {
                 setProgress(5);
-                setActive(true);
-
-                setTimeout(() => {
-                  dataPopUp.setHidden(true);
-                  opponent.setNick(prop.nick)
-                  opponent.setUuid(prop.uuid)
-                },1000 * 2)
               
                 send({
-                  type: "ACCEPTED",
+                  type: "DENIED",
                   msg: { uuid: dataPopUp.id }
                 })
+
+                clearPopUp()
               }}
             />
-          </Link>
-            
-          <Button
-            id="denied"
-            value="Denied"
-            onClick={() => {
-              setProgress(5);
-              setActive(true);
-              dataPopUp.setHidden(true);
-            
-              send({
-                type: "DENIED",
-                msg: { uuid: dataPopUp.id }
-              })
-            }}
-          />
 
-        </> : undefined}
+          </>}
+        </div>
       </div>
     }</>
   )

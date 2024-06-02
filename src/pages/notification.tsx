@@ -1,18 +1,19 @@
-import TopBar from "../components/topBar";
-import BottomBar from "../components/bottomBar";
 import Input from "../components/input";
-import Disconnect from "../components/disconnect";
-import CallPopUp from "../components/callPopUp";
 import RedirectClient from "../components/redirect";
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/notification.css";
 
 const Notification = () => {
-  return (<>
-    <Disconnect />
-    <RedirectClient/>
-    <TopBar pageName="NOTIFICATION" previousPage="/" />
+  let page = usePage()
 
-    <CallPopUp/>
+  useEffect(() => {
+      page.setName("NOTIFICATION")
+      page.setOpenBars(true)
+  },[])
+
+  return (<>
+    <RedirectClient/>
 
     <div id="messagens">
       <Input value="" placeholder="Serach someone" id="search" />
@@ -22,8 +23,6 @@ const Notification = () => {
 
       <div id="underline"></div>
     </div>
-
-    <BottomBar />
   </>)
 }
 

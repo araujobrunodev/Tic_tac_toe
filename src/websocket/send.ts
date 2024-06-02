@@ -1,6 +1,5 @@
 import encode from "./tools/encode";
 import {ws} from "./connect";
-import receive from "./receive";
 
 const send = (data:object) => {
     let encodeData = encode(data);
@@ -9,7 +8,5 @@ const send = (data:object) => {
     
     ws.send(encodeData);
 }
-
-receive();
 
 export default send;

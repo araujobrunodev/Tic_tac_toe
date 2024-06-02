@@ -1,37 +1,37 @@
-import TopBar from "../components/topBar";
-import BottomBar from "../components/bottomBar";
 import Button from "../components/button";
-import perfil from "../types/account";
-import Disconnect from "../components/disconnect";
-import RedirectClient from "../components/redirect";
+import { useStatus } from "../types/playerStatus";
+import { usePage } from "../types/page";
+import { useEffect } from "react";
 import "../css/account.css"
 
 const Account = () => {
-    return (<>
-        <Disconnect />
-        <RedirectClient/>
-        <TopBar pageName="ACCOUNT" previousPage="/"/>
+    let page = usePage()
+    let status = useStatus()
 
+    useEffect(() => {
+        page.setName("ACCOUNT")
+        page.setOpenBars(true)
+    },[])
+
+    return (<>
         <div id="_info"> 
             <div id="name">
                 Name: <span id="value-name">{
-                perfil.getNickname()
+                status.nick
                 }</span>
             </div>
 
             <div id="id">
                 ID: <span id="value-id">{
-                    perfil.getUUID()
+                    status.uuid
                 }
                 </span>
                 
                 <Button id="copy" value="copy" onClick={() => {
-                    navigator.clipboard.writeText(perfil.getUUID());
+                    navigator.clipboard.writeText(status.uuid);
                 }}></Button>
             </div>
         </div>
-
-        <BottomBar/>
     </>)
 }
 

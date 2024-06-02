@@ -1,10 +1,9 @@
 import { Redirect } from "../components/redirect";
 import Heartbeat from "../types/heartBeat";
-import perfil from "../types/account";
 import send from "../websocket/send";
 
-const connect = () => {
-    let nick = perfil.getNickname();
+const connect = (nickName: string) => {
+    let nick = nickName;
     let NoSpace = false;
     let result = false;
 
@@ -19,7 +18,7 @@ const connect = () => {
     if (nick.length > 3 && nick.length < 8 && !NoSpace) {
         send({
             type: "CONNECT",
-            msg: { player: perfil.getNickname() }
+            msg: { player: nick}
         })
         result = true;
 

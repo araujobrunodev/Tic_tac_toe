@@ -1,6 +1,5 @@
 import {ws} from "./connect";
 import decode from "./tools/decode";
-import mensagens from "./mensagens";
 import { receiverProperty } from "../types/receive";
 
 const receive = () => {
@@ -8,7 +7,7 @@ const receive = () => {
   
   ws.addEventListener("message", (receivedata:any) => {
     let decodeData = decode(receivedata.data as string) as receiverProperty;
-    mensagens(decodeData)
+    // mensagens(decodeData)
   })
 }
 

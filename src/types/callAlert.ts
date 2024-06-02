@@ -1,6 +1,13 @@
-var callInfo = {
-    active:false,
-    message:""
+import { createContext, useContext } from "react";
+
+interface Info {
+    active: boolean,
+    setActive: (ad: boolean) => void,
+    message: string,
+    setMessage: (h: string) => void
 } 
 
-export default callInfo;
+const CreateInfo = createContext({} as Info)
+const useInfo = () => useContext(CreateInfo)
+
+export { CreateInfo, useInfo }

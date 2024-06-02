@@ -6,36 +6,37 @@ import GamePage from "./pages/Game"
 import Notification from "./pages/notification"
 import Account from "./pages/account"
 import Invite from "./pages/invite"
+import MainContainer from "./pages/mainContainer"
 
 const router = createHashRouter([
   {
     path:"/",
     element:<Outlet/>,
-    errorElement:<Page404/>,
+    errorElement: <MainContainer page={<Page404/>}/>,
     children: [
       {
         path:"/",
-        element:<Main/>
+        element: <MainContainer page={<Main/>}/>
       },
       {
         path:"/multiplayer",
-        element:<Multiplayer/>
+        element: <MainContainer page={<Multiplayer/>}/>
       },
       {
         path:"/playing",
-        element:<GamePage/>
+        element: <MainContainer page={<GamePage/>}/>
       },
       {
         path:"/account",
-        element: <Account/>
+        element: <MainContainer page={<Account/>}/>
       },
       {
         path:"/notification",
-        element: <Notification/>
+        element: <MainContainer page={<Notification/>}/>
       },
       {
         path:"/invite",
-        element:<Invite/>
+        element: <MainContainer page={<Invite/>}/>
       }
     ]
   }

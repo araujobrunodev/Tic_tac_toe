@@ -1,9 +1,8 @@
 import positions from "../types/position";
 import { UpdateBarGame } from "../pages/Game";
-import perfil from "../types/account";
 
-function positionReserved(collumn: string, position: string, mark: string) {
-    if (mark == perfil.getMark()) console.error("player has the wrong mark"); 
+function positionReserved(collumn: string, position: string, mark: string, yourMark: string) {
+    if (mark == yourMark) console.error("player has the wrong mark"); 
     switch (collumn) {
         case "1":
             switch (position) {

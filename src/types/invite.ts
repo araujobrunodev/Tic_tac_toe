@@ -1,10 +1,15 @@
+import { createContext, useContext } from "react";
+
 interface InvitePlayer {
     /** player name*/
     nick: string,
     /** player identification*/
     uuid:string,
     /** invited response*/
-    value: string
+    value: string,
+    setNick: (a: string) => void,
+    setUuid: (f: string) => void,
+    setValue: (g: string) => void
 }
 
 export type invitePlayer = InvitePlayer;
@@ -13,7 +18,14 @@ export type invitePlayer = InvitePlayer;
 var inviteSomeone: invitePlayer = {
     value: "",
     nick: "",
-    uuid: ""
+    uuid: "",
+    setNick: () => {},
+    setUuid: () => {},
+    setValue: () => {}
 }
 
+const CreateInvite = createContext({} as InvitePlayer)
+const useInvite = () => useContext(CreateInvite)
+
 export default inviteSomeone;
+export { CreateInvite, useInvite }

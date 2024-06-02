@@ -1,20 +1,24 @@
-import RedirectClient from "../components/redirect"
 import Input from "../components/input"
 import Button from "../components/button"
 import connect from "../inputs/connect"
 import H1 from "../components/title"
 import {useState} from "react"
-import Disconnect from "../components/disconnect"
 import '../css/App.css'
+import { useEffect } from "react";
+import { usePage } from "../types/page";
+import { useStatus } from "../types/playerStatus"
 
 const Main = () => {
   let [active,setActive] = useState(true);
+  let page = usePage()
+  let status = useStatus()
+
+  useEffect(() => {
+      page.setOpenBars(false)
+  },[])
 
   return (
     <>
-      <Disconnect />
-      <RedirectClient />
-
       <div className='container-logo'>
         <p id='logo1'>TIC</p>
         <p id='logo2'>TAC</p>
@@ -27,7 +31,7 @@ const Main = () => {
           id="play"
           value="Play"
           onClick={() => {
-            if (connect()) return setActive(true);
+            if (connect(status.nick)) return setActive(true);
             setActive(false);
           }} />
       </div>

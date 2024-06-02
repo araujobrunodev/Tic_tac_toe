@@ -1,171 +1,175 @@
-import TopBar from "../components/topBar"
-import BottomBar from "../components/bottomBar"
 import BarGame from "../components/barGame"
 import ScoreBoard from "../components/scoreBoard"
 import positions from "../types/position"
-import perfil from "../types/account"
+import { useStatus } from "../types/playerStatus"
 import freePosition from "../room/position"
 import { playersTurn } from "../room/turn"
 import { Info } from "../components/alert"
 import positionMarked from "../room/marked"
-import RedirectClient from "../components/redirect"
 import activeTurn from "../types/active"
-import Disconnect from "../components/disconnect"
 import AlertExit from "../components/alert2"
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/game.css"
+import { useOpponent } from "../types/room"
 
 export var UpdateBarGame = {
     update:false
 }
 
 const GamePage = () => {
-    return (<>
-        <Disconnect />
-        <RedirectClient/>
-        <TopBar pageName="PLAYING" previousPage="/" />
+    let page = usePage()
+    let status = useStatus()
+    let opponent = useOpponent()
 
+    useEffect(() => {
+        page.setName("PLAYING")
+        page.setOpenBars(true)
+    },[])
+
+    return (<>
         <ScoreBoard />        
 
         <BarGame
             onClick1={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("1","1");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn1.pos1 = perfil.getMark();
+                        positions.collumn1.pos1 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("1","1");
-                        playersTurn("change");
+                        positionMarked("1","1", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
             
             onClick2={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("1","2");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn1.pos2 = perfil.getMark();
+                        positions.collumn1.pos2 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("1","2");
-                        playersTurn("change");
+                        positionMarked("1","2", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick3={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("1","3");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn1.pos3 = perfil.getMark();
+                        positions.collumn1.pos3 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("1","3");
-                        playersTurn("change");
+                        positionMarked("1","3", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick4={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("2","1");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn2.pos1 = perfil.getMark();
+                        positions.collumn2.pos1 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("2","1");
-                        playersTurn("change");
+                        positionMarked("2","1", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick5={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("2","2");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn2.pos2 = perfil.getMark();
+                        positions.collumn2.pos2 = status.mark
                         UpdateBarGame.update = true;
-                        positionMarked("2","2");
-                        playersTurn("change");
+                        positionMarked("2","2", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick6={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("2","3");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn2.pos3 = perfil.getMark();
+                        positions.collumn2.pos3 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("2","3");
-                        playersTurn("change");
+                        positionMarked("2","3", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick7={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("3","1");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn3.pos1 = perfil.getMark();
+                        positions.collumn3.pos1 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("3","1");
-                        playersTurn("change");
+                        positionMarked("3","1", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick8={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("3","2");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
 
-                        positions.collumn3.pos2 = perfil.getMark();
+                        positions.collumn3.pos2 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("3","2");
-                        playersTurn("change");
+                        positionMarked("3","2", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
             }}
 
             onClick9={() => {
-                if (perfil.getYourTurn() == true) {
+                if (status.yourTurn == true) {
                     let PositionIsFree = freePosition("3","3");
                     
                     if (PositionIsFree == false) {
-                        if (perfil.getMark() == "") perfil.setMark("X");
+                        if (status.mark == "") status.setMark("X");
                         
-                        positions.collumn3.pos3 = perfil.getMark();
+                        positions.collumn3.pos3 = status.mark;
                         UpdateBarGame.update = true;
-                        positionMarked("3","3");
-                        playersTurn("change");
+                        positionMarked("3","3", status.mark, opponent.uuid);
+                        playersTurn("change", status.uuid, opponent.uuid);
                         activeTurn.state = true;
                     }
                 }
@@ -174,8 +178,6 @@ const GamePage = () => {
 
         <Info/>
         <AlertExit/>
-
-        <BottomBar />
     </>)
 }
 

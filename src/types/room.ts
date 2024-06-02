@@ -1,3 +1,4 @@
+import { createContext, useContext } from "react";
 import { playerType } from "./player"
 
 interface Room {
@@ -7,15 +8,16 @@ interface Room {
     opponentMark:string
 }
 
-type room = Room;
-
-/** current room you are in */
-var currentRoom:room = {
-    opponent:{
-        nick:"",
-        uuid:""
-    },
-    opponentMark:""
+interface Opponent {
+    uuid: string,
+    nick: string,
+    mark: string,
+    setUuid: (a: string) => void,
+    setNick: (l: string) => void,
+    setMark: (g: string) => void
 }
 
-export default currentRoom;
+const CreateOpponent = createContext({} as Opponent)
+const useOpponent = () => useContext(CreateOpponent)
+
+export { CreateOpponent, useOpponent }

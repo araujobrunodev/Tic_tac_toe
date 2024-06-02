@@ -1,22 +1,14 @@
 import { connect } from "./websocket/connect.js";
-import {RouterProvider} from "react-router-dom";
-import {ActiveComponent} from "./globalState";
-import {useState} from "react";
-import router from './router.js';
+import CreateGlobal from "./CreateGlobal.js";
+import Index from "./index.js";
+import receive from "./websocket/receive.js";
 
 const State = () => {
-    let [active,setActive] = useState(false);
-    let setScoreBoard = (score:boolean) => {
-        setActive(score);
-    }
-
     connect()
 
-    return (<>
-        <ActiveComponent.Provider value={{ScoreBoard:active,setScoreBoard:setScoreBoard}}>
-            <RouterProvider router={router}/>
-        </ActiveComponent.Provider>
-    </>)
+    return (
+        <CreateGlobal children={<Index />}/>
+    )
 }
 
 export default State;

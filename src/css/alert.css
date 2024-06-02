@@ -1,9 +1,7 @@
 #warn2 {
-    position:absolute;
-
-    top: 79%;
-    left: 28%;
-
+    display: flex;
+    justify-content: center;
+    margin: 0px;
     font-family:"Inter",arial;
     text-transform: uppercase;
     font-weight: 600;

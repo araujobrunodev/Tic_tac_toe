@@ -5,49 +5,44 @@ body {
 
 /*logo*/
 .container-logo {
-  display: block;
+  display: flex;
+  flex-flow: wrap column;
   color: white;
   font-size: 5em;
   font-family: 'Bungee Spice',monospace;
-  margin-left: 1rem;
+  padding: 0rem 3rem 5rem 3rem;
   user-select: none;
 }
 
 #logo1,#logo2,#logo3 {
-  margin-top: -0.2em;
-  margin-bottom: -2.6rem;
+  display: flex;
+  margin: 0px;
 }
 
 #logo1 {
   color: #FFE600;
-  margin-top: -18.7rem;
-  margin-left: 3rem;
 }
 
 #logo2 {
+  justify-content: center;
   color: #7825FF;
-  margin-left: 5.5rem;
 }
 
 #logo3 {
+  justify-content: right;
   color: #DCDCDC;
-  margin-left: 8.5rem;
 }
 
 /*inputs*/
 
 ._Inputs {
-  position: absolute;
-  display: inline-block;
-  
+  display: flex;
+  flex-direction: column;
   left: 5.5rem;
-  margin-top: 5.5rem;
+  padding: 0% 20% 0% 20%;
 }
 
 #Nickname {
-  width: 70%;
-  height: 50%;
-  
   border-style: none;
   border-radius: 6px;
   border-bottom: 4.5px solid #7000FF;
@@ -57,9 +52,6 @@ body {
 }
 
 #play {
-  width: 70%;
-  height: 30%;
-  
   font-size: 1.7rem;
 
   color: white;
@@ -76,13 +68,8 @@ body {
 /* warn */
 
 #condition {
-  position:absolute;
-
-  width: 65%;
-
-  top: 72%;
-  left: 18%;
-
   font-size:1.3rem;
   font-family: "Inter",arial;
+  text-align: center;
+  padding: 0% 20% 0% 20%;
 }

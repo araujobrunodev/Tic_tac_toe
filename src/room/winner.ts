@@ -1,4 +1,3 @@
-import perfil from "../types/account";
 import positions from "../types/position";
 import send from "../websocket/send";
 import detectedTIE from "./tie";
@@ -9,7 +8,7 @@ var match = {
     tie:false
 }
 
-const WINNER = (): void => {
+const WINNER = (mark: string, nick: string): void => {
     // X | X | X 
     //   |   |   
     //   |   |
@@ -139,12 +138,12 @@ const WINNER = (): void => {
     }
 
     if (match.HasWinner) {
-        if (perfil.getMark() == match.symbol) {
+        if (mark == match.symbol) {
             setTimeout(() => {
                 send({
                     type:"STATE",
                     msg:{
-                        winner:perfil.getNickname()
+                        winner: nick
                     }
                 })
             },1400)
@@ -158,7 +157,7 @@ const WINNER = (): void => {
 
 setInterval(() => {
     if (match.HasWinner || match.tie) return;
-    WINNER();
+    // WINNER();
 },300);
 
 export {match}

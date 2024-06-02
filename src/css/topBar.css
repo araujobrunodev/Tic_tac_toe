@@ -1,15 +1,9 @@
 #_topBar {
-    position: fixed;
     display: flex;
-
     flex-direction: row;
     justify-content: space-around;
-    
-    width: 100%;
-
-    top: 0.5%;
-
     border-bottom: 1px solid #445A55;
+    padding-top: 5px;
 }
 
 #NamePage {

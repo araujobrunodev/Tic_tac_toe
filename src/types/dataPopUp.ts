@@ -1,3 +1,5 @@
+import { createContext, useContext } from "react";
+
 interface DataPopUp {
     /** appear popup*/
     hidden:boolean,
@@ -8,17 +10,15 @@ interface DataPopUp {
     /** type of message*/
     type:string,
     /** player identification*/
-    id:string
+    id:string,
+    setHidden: (s: boolean) => void,
+    setNick: (g: string) => void,
+    setMessage: (h: string) => void,
+    setType: (w: string) => void,
+    setId: (j: string) => void
 }
 
-type dataPopUp = DataPopUp;
+const CreateDataPopUp = createContext({} as DataPopUp)
+const useDataPopUp = () => useContext(CreateDataPopUp)
 
-var data_popUp:dataPopUp = {
-    nick:"",
-    hidden:true,
-    message:"",
-    type:"",
-    id:""
-};
-
-export default data_popUp;
+export { CreateDataPopUp, useDataPopUp}

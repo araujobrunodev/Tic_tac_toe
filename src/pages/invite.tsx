@@ -1,35 +1,32 @@
-import TopBar from "../components/topBar"
-import BottomBar from "../components/bottomBar"
 import Input from "../components/input"
 import Button from "../components/button"
 import send from "../websocket/send"
-import inviteSomeone from "../types/invite"
-import CallPopUp from "../components/callPopUp"
-import Disconnect from "../components/disconnect"
-import RedirectClient from "../components/redirect"
+import { useInvite } from "../types/invite"
+import { useEffect } from "react";
+import { usePage } from "../types/page";
 import "../css/invite.css"
 
 const Invite = () => {
+  let page = usePage()
+  let invite = useInvite()
+
+  useEffect(() => {
+      page.setName("INVITE")
+      page.setOpenBars(true)
+  },[])
+
   return (<>
-    <Disconnect />
-    <RedirectClient/>
-    <TopBar pageName="INVITE" previousPage="/multiplayer" />
-
-    <CallPopUp/>
-
     <div id="local-id">
       <Input id="send-id" value="" placeholder="Identification"/>
       <Button id="send" value="send" onClick={() => {
         send({
           type: "INVITE",
           msg: {
-            uuid:inviteSomeone.uuid
+            uuid: invite.uuid
           }
         })
       }} />
     </div>
-
-    <BottomBar />
   </>)
 }
 

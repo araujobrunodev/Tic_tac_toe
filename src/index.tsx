@@ -97,7 +97,7 @@ const Index = () => {
                 play.playing = true;
 
                 setInterval(() => {
-                    if (bs.state) playersTurn("begin", status.mark, opponent.uuid);
+                    if (bs.state) playersTurn("begin", status.uuid, opponent.uuid);
                 },1000 * 10)
                 break;
 
@@ -151,7 +151,7 @@ const Index = () => {
                 if (status.nick == receiveState.winner) { 
                     placeBorder.setYou(++placeBorder.you);
                     status.setMark(status.mark = "");
-                    playersTurn("begin", status.mark, opponent.uuid);
+                    playersTurn("begin", status.uuid, opponent.uuid);
                 }
                 if (status.nick == receiveState.loser) {
                     placeBorder.setOpponent(++placeBorder.opponnet);
@@ -167,7 +167,7 @@ const Index = () => {
                 match.tie = false;
                 currentBegin.state = true;
 
-                if (status.mark == "X") playersTurn("begin", status.mark, opponent.uuid);
+                if (status.mark == "X") playersTurn("begin", status.uuid, opponent.uuid);
 
                 status.setMark(status.mark = "");
                 break;
@@ -188,6 +188,7 @@ const Index = () => {
                 exit.setState(exit.state = true);
                 exit.setUpdate(exit.update = true);
                 info.setActive(info.active = false);
+                active.setScoreBoard(false)
 
                 setTimeout(() => {
                     exit.setState(exit.state = false);

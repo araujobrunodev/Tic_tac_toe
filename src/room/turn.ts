@@ -4,10 +4,6 @@ import {ws} from "../websocket/connect";
 import send from "../websocket/send";
 import "./winner";
 
-var playerTurnIntheGame = {
-    nick:""
-}
-
 function playersTurn (turn:string, uuid: string, opponentUuid: string) {
     if (ws.readyState == ws.CLOSED) return;
 
@@ -17,14 +13,13 @@ function playersTurn (turn:string, uuid: string, opponentUuid: string) {
                 type: "TURN",
                 msg: {
                     uuid: uuid,
-                    opponent_uuid: "",
+                    opponent_uuid: opponentUuid,
                     value: "begin"
                 }
             })
             break;
 
         case "change":
-
             send({
                 type: "TURN",
                 msg: {
@@ -46,4 +41,4 @@ setInterval(() => {
     // } 
 },100)
 
-export {playersTurn,playerTurnIntheGame};
+export { playersTurn };

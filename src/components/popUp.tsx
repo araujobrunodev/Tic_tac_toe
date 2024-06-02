@@ -53,19 +53,19 @@ const PopUp = () => {
                 id="accepted"
                 value="Accepted"
                 onClick={() => {
-                  setProgress(5);
-
+                  opponent.setNick(opponent.nick = dataPopUp.nick)
+                  opponent.setUuid(opponent.uuid = dataPopUp.id)
+                  
                   setTimeout(() => {
-                    opponent.setNick(opponent.nick = dataPopUp.nick)
-                    opponent.setUuid(opponent.uuid = dataPopUp.id)
                     active.setScoreBoard(true)
-                    clearPopUp()
                   },1000 * 2)
-                
+                  
                   send({
                     type: "ACCEPTED",
                     msg: { uuid: dataPopUp.id }
                   })
+
+                  setProgress(5);
                 }}
               />
             </Link>
@@ -74,14 +74,12 @@ const PopUp = () => {
               id="denied"
               value="Denied"
               onClick={() => {
-                setProgress(5);
-              
                 send({
                   type: "DENIED",
                   msg: { uuid: dataPopUp.id }
                 })
 
-                clearPopUp()
+                setProgress(5);
               }}
             />
 

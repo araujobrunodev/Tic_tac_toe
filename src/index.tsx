@@ -10,7 +10,6 @@ import { invitePlayer, useInvite } from "./types/invite"
 import { useDataPopUp } from "./types/dataPopUp"
 import { Redirect } from "./components/redirect"
 import play from "./types/play"
-import updatePlaceBorder from "./types/updatePlaceBorder"
 import { useOpponent } from "./types/room"
 import { playerType } from "./types/player"
 import { bs } from "./types/beginS"
@@ -28,6 +27,7 @@ import clearPositions from "./room/clear"
 import { useExit } from "./types/msgExit"
 import { exitProperty } from "./types/exit"
 import positionReserved from "./room/positionReserved"
+import { useActiveComponent } from "./globalState"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -38,6 +38,7 @@ const Index = () => {
     let info = useInfo()
     let placeBorder = usePlaceBorder()
     let exit = useExit()
+    let active = useActiveComponent()
 
     useEffect(() => {
         if (ws.readyState == ws.CLOSED ||
@@ -82,7 +83,6 @@ const Index = () => {
                 dataPopUp.setMessage(dataPopUp.message = "refused your invite");
 
                 play.playing = false;
-                updatePlaceBorder.update = true;
                 break;
 
             case "ACCEPTED":
@@ -91,10 +91,10 @@ const Index = () => {
                 opponent.setUuid(opponent.uuid = receiveAccepeted.uuid)
                 Redirect.value = true;
                 Redirect.to = "playing";
-                bs.state = true;
+                bs.state = true
+                active.setScoreBoard(true)
 
                 play.playing = true;
-                updatePlaceBorder.update = true;
 
                 setInterval(() => {
                     if (bs.state) playersTurn("begin", status.mark, opponent.uuid);
@@ -146,7 +146,6 @@ const Index = () => {
                 clearPositions();
                 match.symbol = "";
                 match.HasWinner = false;
-                updatePlaceBorder.update = true;
                 currentBegin.state = true;
 
                 if (status.nick == receiveState.winner) { 
@@ -166,8 +165,6 @@ const Index = () => {
                     placeBorder.setTies(++placeBorder.ties);
             
                 match.tie = false;
-
-                updatePlaceBorder.update = true;
                 currentBegin.state = true;
 
                 if (status.mark == "X") playersTurn("begin", status.mark, opponent.uuid);

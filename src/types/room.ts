@@ -21,16 +21,3 @@ const CreateOpponent = createContext({} as Opponent)
 const useOpponent = () => useContext(CreateOpponent)
 
 export { CreateOpponent, useOpponent }
-
-type room = Room;
-
-/** current room you are in */
-var currentRoom:room = {
-    opponent:{
-        nick:"",
-        uuid:""
-    },
-    opponentMark:""
-}
-
-export default currentRoom;

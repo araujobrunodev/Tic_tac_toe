@@ -1,15 +1,13 @@
-import perfil from "../types/account";
-import currentRoom from "../types/room";
 import send from "../websocket/send";
 
-function positionMarked (collumn:string,position:string) {
+function positionMarked (collumn:string,position:string, mark: string, opponentUuid: string) {
     send({
         type:"MARKED",
         msg:{
             collumn:collumn,
             position:position,
-            mark:perfil.getMark(),
-            opponent_uuid:currentRoom.opponent.uuid
+            mark: mark,
+            opponent_uuid: opponentUuid
         }
     })
 }

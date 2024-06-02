@@ -1,8 +1,5 @@
-import perfil from "../types/account";
 import activeTurn from "../types/active";
 import currentBegin from "../types/activebegin";
-import callInfo from "../types/callAlert";
-import currentRoom from "../types/room";
 import {ws} from "../websocket/connect";
 import send from "../websocket/send";
 import "./winner";
@@ -11,7 +8,7 @@ var playerTurnIntheGame = {
     nick:""
 }
 
-function playersTurn (turn:string) {
+function playersTurn (turn:string, uuid: string, opponentUuid: string) {
     if (ws.readyState == ws.CLOSED) return;
 
     switch (turn) {
@@ -19,7 +16,7 @@ function playersTurn (turn:string) {
             send({
                 type: "TURN",
                 msg: {
-                    uuid: perfil.getUUID(),
+                    uuid: uuid,
                     opponent_uuid: "",
                     value: "begin"
                 }
@@ -31,8 +28,8 @@ function playersTurn (turn:string) {
             send({
                 type: "TURN",
                 msg: {
-                    uuid: perfil.getUUID(),
-                    opponent_uuid: currentRoom.opponent.uuid,
+                    uuid: uuid,
+                    opponent_uuid: opponentUuid,
                     value: "change"
                 }
             })
@@ -41,12 +38,12 @@ function playersTurn (turn:string) {
 }
 
 setInterval(() => {
-    if (activeTurn.state && !currentBegin.state) {
-        callInfo.message = "";
-        callInfo.active = true;
-        perfil.setYourTurn(false);
-        playersTurn("change");
-    } 
+    // if (activeTurn.state && !currentBegin.state) {
+        // callInfo.message = "";
+        // callInfo.active = true;
+        // perfil.setYourTurn(false);
+        // playersTurn("change");
+    // } 
 },100)
 
 export {playersTurn,playerTurnIntheGame};

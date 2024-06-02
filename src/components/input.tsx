@@ -1,5 +1,6 @@
 import { FC } from "react";
-import getComponentValue from "../getInput";
+import { useInvite } from "../types/invite";
+import { useStatus } from "../types/playerStatus";
 
 interface InputProps {
   /** valor do input */
@@ -12,9 +13,22 @@ interface InputProps {
 
 
 const Input: FC<InputProps> = (prop) => {
+  let status = useStatus()
+  let invite = useInvite()
+
   return (
     <input
-      onChange={(event) => getComponentValue(prop.id,event.target.value)}
+      onChange={(event) => {
+        let value = event.target.value
+        switch (prop.id) {
+          case "Nickname":
+            status.setNick(value);
+            break;
+          case "send-id":
+            invite.setUuid(value);
+            break;
+        }
+      }}
       id={prop.id}
       placeholder={prop.placeholder}
       defaultValue={prop.value}

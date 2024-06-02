@@ -1,4 +1,3 @@
-import RedirectClient from "../components/redirect"
 import Input from "../components/input"
 import Button from "../components/button"
 import connect from "../inputs/connect"
@@ -7,10 +6,12 @@ import {useState} from "react"
 import '../css/App.css'
 import { useEffect } from "react";
 import { usePage } from "../types/page";
+import { useStatus } from "../types/playerStatus"
 
 const Main = () => {
   let [active,setActive] = useState(true);
   let page = usePage()
+  let status = useStatus()
 
   useEffect(() => {
       page.setOpenBars(false)
@@ -30,7 +31,7 @@ const Main = () => {
           id="play"
           value="Play"
           onClick={() => {
-            if (connect()) return setActive(true);
+            if (connect(status.nick)) return setActive(true);
             setActive(false);
           }} />
       </div>

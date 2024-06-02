@@ -17,15 +17,4 @@ const usePlaceBorder = () => useContext(CreatePlaceBorder)
 
 export {CreatePlaceBorder, usePlaceBorder}
 
-var place_border:PlaceBorder = {
-    opponnet:0,
-    ties:0,
-    you:0,
-    setOpponent: () => {},
-    setTies: () => {},
-    setYou: () => {}
-}
-
 export type placeBorder = PlaceBorder;
-
-export default place_border

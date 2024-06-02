@@ -22,20 +22,3 @@ const CreateDataPopUp = createContext({} as DataPopUp)
 const useDataPopUp = () => useContext(CreateDataPopUp)
 
 export { CreateDataPopUp, useDataPopUp}
-
-type dataPopUp = DataPopUp;
-
-var data_popUp:dataPopUp = {
-    nick:"",
-    hidden:true,
-    message:"",
-    type:"",
-    id:"",
-    setHidden: () => {},
-    setId: () => {},
-    setMessage: () => {},
-    setNick: () => {},
-    setType: () => {},
-};
-
-export default data_popUp;

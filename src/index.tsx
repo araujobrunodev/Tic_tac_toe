@@ -20,7 +20,6 @@ import { turnType } from "./types/turn"
 import { useInfo } from "./types/callAlert"
 import activeTurn from "./types/active"
 import currentBegin from "./types/activebegin"
-import MARKED from "./websocket/options/marked"
 import { markedType } from "./types/mark"
 import { stateProperty } from "./types/state"
 import { usePlaceBorder } from "./types/placeBorder"
@@ -28,6 +27,7 @@ import { match } from "./room/winner"
 import clearPositions from "./room/clear"
 import { useExit } from "./types/msgExit"
 import { exitProperty } from "./types/exit"
+import positionReserved from "./room/positionReserved"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -71,7 +71,7 @@ const Index = () => {
                     Redirect.to = "multiplayer";
                 else 
                     Redirect.to = "invite";
-
+                console.log("invited", property)
                 break;
 
             case "DENIED":
@@ -96,7 +96,7 @@ const Index = () => {
                 updatePlaceBorder.update = true;
 
                 setInterval(() => {
-                    if (bs.state) playersTurn("begin");
+                    if (bs.state) playersTurn("begin", status.mark, opponent.uuid);
                 },1000 * 10)
                 break;
 
@@ -136,7 +136,8 @@ const Index = () => {
                 break;
 
             case "MARKED":
-                MARKED(property.msg as markedType)
+                let value = property.msg as markedType
+                positionReserved(value.collumn, value.position, value.mark, status.mark);
                 break;
 
             case "STATE":
@@ -150,7 +151,7 @@ const Index = () => {
                 if (status.nick == receiveState.winner) { 
                     placeBorder.setYou(++placeBorder.you);
                     status.setMark("");
-                    playersTurn("begin");
+                    playersTurn("begin", status.mark, opponent.uuid);
                 }
                 if (status.nick == receiveState.loser) {
                     placeBorder.setOpponent(++placeBorder.opponnet);
@@ -168,7 +169,7 @@ const Index = () => {
                 updatePlaceBorder.update = true;
                 currentBegin.state = true;
 
-                if (status.mark == "X") playersTurn("begin");
+                if (status.mark == "X") playersTurn("begin", status.mark, opponent.uuid);
 
                 status.setMark("");
                 break;

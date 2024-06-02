@@ -1,12 +1,12 @@
 import Button from "../components/button";
-import perfil from "../types/account";
-import RedirectClient from "../components/redirect";
+import { useStatus } from "../types/playerStatus";
 import { usePage } from "../types/page";
 import { useEffect } from "react";
 import "../css/account.css"
 
 const Account = () => {
     let page = usePage()
+    let status = useStatus()
 
     useEffect(() => {
         page.setName("ACCOUNT")
@@ -17,18 +17,18 @@ const Account = () => {
         <div id="_info"> 
             <div id="name">
                 Name: <span id="value-name">{
-                perfil.getNickname()
+                status.nick
                 }</span>
             </div>
 
             <div id="id">
                 ID: <span id="value-id">{
-                    perfil.getUUID()
+                    status.uuid
                 }
                 </span>
                 
                 <Button id="copy" value="copy" onClick={() => {
-                    navigator.clipboard.writeText(perfil.getUUID());
+                    navigator.clipboard.writeText(status.uuid);
                 }}></Button>
             </div>
         </div>

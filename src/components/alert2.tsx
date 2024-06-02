@@ -1,9 +1,10 @@
 import { useReducer,useEffect } from "react";
-import { currentExit } from "../types/msgExit";
+import { currentExit, useExit } from "../types/msgExit";
 import "../css/msgExit.css";
 
 const AlertExit = () => {
     var [,setUpdate] = useReducer((soma) => soma + 1,0);
+    let exit = useExit()
 
     useEffect(() => {
         let time = setInterval(() => {
@@ -18,8 +19,8 @@ const AlertExit = () => {
     return (<>
         <h3 
         id="exitStyle" 
-        hidden={!currentExit.state} >
-            {currentExit.msg}
+        hidden={!exit.state} >
+            {exit.msg}
         </h3>
     </>)
 }

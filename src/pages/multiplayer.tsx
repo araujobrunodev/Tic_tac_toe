@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import Button from "../components/button";
-import RedirectClient from "../components/redirect";
 import "../css/multiplayerButton.css"
 import { useEffect } from "react";
 import { usePage } from "../types/page";

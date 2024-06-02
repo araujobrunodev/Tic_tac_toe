@@ -2,9 +2,9 @@ import { FC } from "react";
 import Button from "./button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import data_popUp from "../types/dataPopUp";
+import { useDataPopUp } from "../types/dataPopUp";
 import send from "../websocket/send";
-import currentRoom from "../types/room";
+import { useOpponent } from "../types/room";
 import "../css/popUp.css"
 
 interface PopUpProp {
@@ -24,9 +24,11 @@ const PopUp: FC<PopUpProp> = (prop) => {
   let [active, setActive] = useState(prop.hidden)
   let [progress, setProgress] = useState(0)
   let [height, setHeight] = useState(0);
+  let opponent = useOpponent()
+  let dataPopUp = useDataPopUp()
 
   useEffect(() => {
-    if (progress == 5) { setProgress(0); setActive(true); data_popUp.hidden = true }
+    if (progress == 5) { setProgress(0); setActive(true); dataPopUp.setHidden(true) }
     if (active == true) return;
 
     prop.type == "invite" ? setHeight(19) : setHeight(13);
@@ -59,14 +61,14 @@ const PopUp: FC<PopUpProp> = (prop) => {
                 setActive(true);
 
                 setTimeout(() => {
-                  data_popUp.hidden = true;
-                  currentRoom.opponent.nick = prop.nick
-                  currentRoom.opponent.uuid = prop.uuid
+                  dataPopUp.setHidden(true);
+                  opponent.setNick(prop.nick)
+                  opponent.setUuid(prop.uuid)
                 },1000 * 2)
               
                 send({
                   type: "ACCEPTED",
-                  msg: { uuid: data_popUp.id }
+                  msg: { uuid: dataPopUp.id }
                 })
               }}
             />
@@ -78,11 +80,11 @@ const PopUp: FC<PopUpProp> = (prop) => {
             onClick={() => {
               setProgress(5);
               setActive(true);
-              data_popUp.hidden = true;
+              dataPopUp.setHidden(true);
             
               send({
                 type: "DENIED",
-                msg: { uuid: data_popUp.id }
+                msg: { uuid: dataPopUp.id }
               })
             }}
           />

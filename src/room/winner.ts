@@ -155,9 +155,9 @@ const WINNER = (mark: string, nick: string): void => {
     if (match.HasWinner) console.log("winner detected");
 }
 
-setInterval(() => {
-    if (match.HasWinner || match.tie) return;
-    // WINNER();
-},300);
+// setInterval(() => {
+//     if (match.HasWinner || match.tie) return;
+//     // WINNER();
+// },300);
 
 export {match}

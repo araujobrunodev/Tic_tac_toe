@@ -2,6 +2,13 @@ import { FC, useEffect, useReducer, useState } from "react";
 import positions from "../types/position";
 import { UpdateBarGame } from "../pages/Game";
 import "../css/game.css";
+import { useTurn } from "../types/active";
+import { useStatus } from "../types/playerStatus";
+import { useInfo } from "../types/callAlert";
+import { playersTurn } from "../room/turn";
+import { useBegin } from "../types/activebegin";
+import { useOpponent } from "../types/room";
+import { match } from "../room/winner";
 
 interface BarGameProps {
     /** callback of column one position 1*/
@@ -29,6 +36,11 @@ interface BarGameProps {
 const BarGame: FC<BarGameProps> = (prop) => {
     var [pos, setPos] = useState(positions);
     var [, forceUpdate] = useReducer(y => y + 1, 0);
+    let turn = useTurn()
+    let status = useStatus()
+    let info = useInfo()
+    let begin = useBegin()
+    let opponent = useOpponent()
 
     useEffect(() => {
         let time = setInterval(() => {
@@ -42,6 +54,24 @@ const BarGame: FC<BarGameProps> = (prop) => {
         return () => clearInterval(time);
     })
 
+    useEffect(() => {
+        setInterval(() => {
+            if (turn.state && !begin.state) {
+                info.setMessage(info.message = "");
+                info.setActive(info.active = true);
+                status.setYourTurn(status.yourTurn = false);
+                playersTurn("change", status.uuid, opponent.uuid);
+            } 
+        },100)
+    },[turn])
+
+    useEffect(() => {
+        setInterval(() => {
+            if (match.HasWinner || match.tie) return;
+            // WINNER();
+            console.log("winner detected")
+        },300);
+    },[match])
     return (<>
         <div className="container">
             <div className="coll">

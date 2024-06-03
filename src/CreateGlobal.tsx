@@ -8,6 +8,8 @@ import { CreatePlaceBorder } from "./types/placeBorder"
 import { CreateExit } from "./types/msgExit"
 import { CreateDataPopUp } from "./types/dataPopUp"
 import { CreateInfo } from "./types/callAlert"
+import { CreateBegin } from "./types/activebegin"
+import { CreateTurn } from "./types/active"
 
 interface CreateGlobalProps {
     children: ReactElement
@@ -43,6 +45,8 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     let [popUpId, setPopUpId] = useState<string>("")
     let [infoActive, setInfoActive] = useState<boolean>(false)
     let [infoMsg,setInfoMsg] = useState("")
+    let [begin, setBegin] = useState(false)
+    let [turn, setTurn] = useState(false)
 
     return (
         <CreateStatus.Provider value={{available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
@@ -54,7 +58,11 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
                                 <CreateExit.Provider value={{msg: msg, setMsg: setMsg, setState: setStateExit, setUpdate: setUpadateExit, state: stateExit, update: updateExit}}>
                                     <CreateDataPopUp.Provider value={{hidden: popUpHidden, id: popUpId, message: popUpMessage, nick: popUpNick, setHidden: setPopUpHidden, setId: setPopUpId, setMessage: setPopUpMessage, setNick: setPopUpNick, setType: setPopUpType, type: popUpType}}>
                                         <CreateInfo.Provider value={{active: infoActive, message: infoMsg, setActive: setInfoActive, setMessage: setInfoMsg}}>
-                                            {children}
+                                            <CreateBegin.Provider value={{setState: setBegin, state: begin}}>
+                                                <CreateTurn.Provider value={{setState: setTurn, state: turn}}>
+                                                    {children}
+                                                </CreateTurn.Provider>
+                                            </CreateBegin.Provider>
                                         </CreateInfo.Provider>
                                     </CreateDataPopUp.Provider>
                                 </CreateExit.Provider>

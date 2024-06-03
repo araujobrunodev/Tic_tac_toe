@@ -6,7 +6,7 @@ import freePosition from "../room/position"
 import { playersTurn } from "../room/turn"
 import { Info } from "../components/alert"
 import positionMarked from "../room/marked"
-import activeTurn from "../types/active"
+import activeTurn, { useTurn } from "../types/active"
 import AlertExit from "../components/alert2"
 import { useEffect } from "react";
 import { usePage } from "../types/page";
@@ -21,6 +21,7 @@ const GamePage = () => {
     let page = usePage()
     let status = useStatus()
     let opponent = useOpponent()
+    let turn = useTurn()
 
     useEffect(() => {
         page.setName("PLAYING")
@@ -42,7 +43,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("1","1", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -58,7 +59,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("1","2", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -74,7 +75,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("1","3", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -90,7 +91,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("2","1", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -106,7 +107,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("2","2", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -122,7 +123,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("2","3", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -138,7 +139,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("3","1", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -154,7 +155,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("3","2", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}
@@ -170,7 +171,7 @@ const GamePage = () => {
                         UpdateBarGame.update = true;
                         positionMarked("3","3", status.mark, opponent.uuid);
                         playersTurn("change", status.uuid, opponent.uuid);
-                        activeTurn.state = true;
+                        turn.setState(turn.state = true);
                     }
                 }
             }}

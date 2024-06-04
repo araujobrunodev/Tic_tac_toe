@@ -17,17 +17,17 @@ import { playersTurn } from "./room/turn"
 import send from "./websocket/send"
 import { turnType } from "./types/turn"
 import { useInfo } from "./types/callAlert"
-import activeTurn, { useTurn } from "./types/active"
-import currentBegin, { useBegin } from "./types/activebegin"
+import { useTurn } from "./types/active"
+import { useBegin } from "./types/activebegin"
 import { markedType } from "./types/mark"
 import { stateProperty } from "./types/state"
 import { usePlaceBorder } from "./types/placeBorder"
 import { match } from "./room/winner"
-import clearPositions from "./room/clear"
 import { useExit } from "./types/msgExit"
 import { exitProperty } from "./types/exit"
 import positionReserved from "./room/positionReserved"
 import { useActiveComponent } from "./globalState"
+import { usePosition } from "./types/position"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -41,6 +41,13 @@ const Index = () => {
     let active = useActiveComponent()
     let turn = useTurn()
     let begin = useBegin()
+    let position = usePosition()
+
+    const clearPositions = () => {
+        position.setCollumn1({pos1: "", pos2: "", pos3: ""})
+        position.setCollumn2({pos1: "", pos2: "", pos3: ""})
+        position.setCollumn3({pos1: "", pos2: "", pos3: ""})
+    }
 
     useEffect(() => {
         if (ws.readyState == ws.CLOSED ||
@@ -140,7 +147,7 @@ const Index = () => {
 
             case "MARKED":
                 let value = property.msg as markedType
-                positionReserved(value.collumn, value.position, value.mark, status.mark);
+                positionReserved(value.collumn, value.position, value.mark, status.mark, position);
                 break;
 
             case "STATE":

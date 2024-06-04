@@ -1,27 +1,35 @@
-import positions from "../types/position";
+import { rows } from "../types/position";
 
-function freePosition(collumn: string, position: string):boolean {
+interface Pos {
+    collumn1: rows,
+    collumn2: rows,
+    collumn3: rows
+}
+
+export type pos = Pos
+
+function freePosition(collumn: string, row: string, position: Pos):boolean {
     let response = false;
 
     switch (collumn) {
         /* collumn 1 */
         case "1":
-            switch (position) {
+            switch (row) {
                 /* position 1 */
                 case "1":
-                    positions.collumn1.pos1.length != 0 ?
+                    position.collumn1.pos1.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 2 */
                 case "2":
-                    positions.collumn1.pos2.length != 0 ?
+                    position.collumn1.pos2.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 3 */
                 case "3":
-                    positions.collumn1.pos3.length != 0 ?
+                    position.collumn1.pos3.length != 0 ?
                         response = true : response = false;
                     break;
             }
@@ -29,22 +37,22 @@ function freePosition(collumn: string, position: string):boolean {
 
         /* collumn 2 */
         case "2":
-            switch (position) {
+            switch (row) {
                 /* position 1 */
                 case "1":
-                    positions.collumn2.pos1.length != 0 ?
+                    position.collumn2.pos1.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 2 */
                 case "2":
-                    positions.collumn2.pos2.length != 0 ?
+                    position.collumn2.pos2.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 3 */
                 case "3":
-                    positions.collumn2.pos3.length != 0 ?
+                    position.collumn2.pos3.length != 0 ?
                         response = true : response = false;
                     break;
             }
@@ -52,22 +60,22 @@ function freePosition(collumn: string, position: string):boolean {
 
         /* collumn 3 */
         case "3":
-            switch (position) {
+            switch (row) {
                 /* position 1 */
                 case "1":
-                    positions.collumn3.pos1.length != 0 ?
+                    position.collumn3.pos1.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 2 */
                 case "2":
-                    positions.collumn3.pos2.length != 0 ?
+                    position.collumn3.pos2.length != 0 ?
                         response = true : response = false;
                     break;
 
                 /* position 3 */
                 case "3":
-                    positions.collumn3.pos3.length != 0 ?
+                    position.collumn3.pos3.length != 0 ?
                         response = true : response = false;
                     break;
             }

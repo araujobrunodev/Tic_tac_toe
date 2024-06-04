@@ -1,13 +1,14 @@
-import positions from "../types/position"
+// import positions from "../types/position"
 import send from "../websocket/send";
 import { match } from "./winner"
+import { pos } from "./position";
 
-const detectedTIE = () => {
+const detectedTIE = (position: pos) => {
     if (match.HasWinner) return;
 
-    if ((positions.collumn1.pos1 != "" && positions.collumn1.pos2 != "" && positions.collumn1.pos3 != "") &&
-        (positions.collumn2.pos1 != "" && positions.collumn2.pos2 != "" && positions.collumn2.pos3 != "") && 
-        (positions.collumn3.pos1 != "" && positions.collumn3.pos2 != "" && positions.collumn3.pos3 != "")) {
+    if ((position.collumn1.pos1 != "" && position.collumn1.pos2 != "" && position.collumn1.pos3 != "") &&
+        (position.collumn2.pos1 != "" && position.collumn2.pos2 != "" && position.collumn2.pos3 != "") && 
+        (position.collumn3.pos1 != "" && position.collumn3.pos2 != "" && position.collumn3.pos3 != "")) {
             match.tie = true;
     }
 

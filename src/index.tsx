@@ -22,12 +22,12 @@ import { useBegin } from "./types/activebegin"
 import { markedType } from "./types/mark"
 import { stateProperty } from "./types/state"
 import { usePlaceBorder } from "./types/placeBorder"
-import { match } from "./room/winner"
 import { useExit } from "./types/msgExit"
 import { exitProperty } from "./types/exit"
 import positionReserved from "./room/positionReserved"
 import { useActiveComponent } from "./globalState"
 import { usePosition } from "./types/position"
+import { useDuel } from "./types/duel"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -42,6 +42,7 @@ const Index = () => {
     let turn = useTurn()
     let begin = useBegin()
     let position = usePosition()
+    let duel = useDuel()
 
     const clearPositions = () => {
         position.setCollumn1({pos1: "", pos2: "", pos3: ""})
@@ -153,8 +154,7 @@ const Index = () => {
             case "STATE":
                 let receiveState = property.msg as stateProperty
                 clearPositions();
-                match.symbol = "";
-                match.HasWinner = false;
+                duel.setState(duel.state = false);
                 begin.setState(begin.state = true);
 
                 if (status.nick == receiveState.winner) { 
@@ -170,11 +170,12 @@ const Index = () => {
 
             case "TIE":
                 clearPositions()
-                if (match.tie) 
-                    placeBorder.setTies(++placeBorder.ties);
+
+                if (duel.state) placeBorder.setTies(++placeBorder.ties);
             
-                match.tie = false;
+                duel.setState(duel.state = false);
                 begin.setState(begin.state = true);
+                info.setActive(info.active = true);
 
                 if (status.mark == "X") playersTurn("begin", status.uuid, opponent.uuid);
 
@@ -196,7 +197,7 @@ const Index = () => {
                 exit.setMsg(exit.msg  = `${receiveExit.nick} ${receiveExit.value}`)
                 exit.setState(exit.state = true);
                 exit.setUpdate(exit.update = true);
-                info.setActive(info.active = false);
+                info.setActive(info.active = true);
                 active.setScoreBoard(false)
 
                 setTimeout(() => {

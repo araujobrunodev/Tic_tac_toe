@@ -1,4 +1,4 @@
-import { FC, useEffect, useReducer, useState } from "react";
+import { FC, useEffect } from "react";
 import { usePosition } from "../types/position";
 import "../css/game.css";
 import { useTurn } from "../types/active";
@@ -7,7 +7,9 @@ import { useInfo } from "../types/callAlert";
 import { playersTurn } from "../room/turn";
 import { useBegin } from "../types/activebegin";
 import { useOpponent } from "../types/room";
-import { match } from "../room/winner";
+import WINNER from "../room/winner";
+import { useDuel } from "../types/duel";
+import detectedTIE from "../room/tie";
 
 interface BarGameProps {
     /** callback of column one position 1*/
@@ -39,37 +41,35 @@ const BarGame: FC<BarGameProps> = (prop) => {
     let begin = useBegin()
     let opponent = useOpponent()
     let position = usePosition()
-
-    // useEffect(() => {
-    //     let time = setInterval(() => {
-    //         if (!UpdateBarGame.update) return;
-
-    //         UpdateBarGame.update = false;
-    //         setPos(positions);
-    //         forceUpdate();
-    //     },500)
-
-    //     return () => clearInterval(time);
-    // })
+    let duel = useDuel()
 
     useEffect(() => {
-        if (turn.state && !begin.state) {
-            console.log("info:",info,"\n turn:", turn)
-            info.setMessage(info.message = "");
-            info.setActive(info.active = true);
-            status.setYourTurn(status.yourTurn = false);
-            playersTurn("change", status.uuid, opponent.uuid);
-        }
+        if (duel.state) return;
+        
+        let time = setTimeout(() => {
+            if (
+            WINNER(status.mark, status.nick, position) ||
+            detectedTIE(position)) {
+                duel.setState(duel.state = true)
+            }
+        },300);
+
+        return () => clearTimeout(time)
+    })
+
+    useEffect(() => {
+        let time = setTimeout(() => {
+            if (turn.state && !begin.state) {
+                info.setMessage(info.message = "");
+                info.setActive(info.active = true);
+                status.setYourTurn(status.yourTurn = false);
+                playersTurn("change", status.uuid, opponent.uuid);
+            }
+        }, 100 * 2)
+
+        return () => clearTimeout(time)
     },[turn])
 
-    // useEffect(() => {
-    //     setInterval(() => {
-    //         if (match.HasWinner || match.tie) return;
-    //         // WINNER();
-    //         console.log("winner detected")
-    //     },300);
-    // },[match])
-    
     return (<>
         <div className="container">
             <div className="coll">

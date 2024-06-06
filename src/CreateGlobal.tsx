@@ -10,7 +10,8 @@ import { CreateDataPopUp } from "./types/dataPopUp"
 import { CreateInfo } from "./types/callAlert"
 import { CreateBegin } from "./types/activebegin"
 import { CreateTurn } from "./types/active"
-import { CreatePosition, rows, usePosition } from "./types/position"
+import { CreatePosition, rows } from "./types/position"
+import { CreateDuel } from "./types/duel"
 
 interface CreateGlobalProps {
     children: ReactElement
@@ -63,6 +64,7 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
         pos2: "",
         pos3: ""
     } as rows)
+    let [duel, setDuel] = useState(false)
 
     return (
         <CreateStatus.Provider value={{available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
@@ -77,7 +79,9 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
                                             <CreateBegin.Provider value={{setState: setBegin, state: begin}}>
                                                 <CreateTurn.Provider value={{setState: setTurn, state: turn}}>
                                                     <CreatePosition.Provider value={{collumn1: pos1, collumn2: pos2, collumn3: pos3, setCollumn1: setPos1, setCollumn2: setPos2, setCollumn3: setPos3}}>
-                                                        {children}
+                                                        <CreateDuel.Provider value={{setState: setDuel, state: duel}}>
+                                                            {children}
+                                                        </CreateDuel.Provider>
                                                     </CreatePosition.Provider>
                                                 </CreateTurn.Provider>
                                             </CreateBegin.Provider>

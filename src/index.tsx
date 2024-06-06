@@ -17,17 +17,17 @@ import { playersTurn } from "./room/turn"
 import send from "./websocket/send"
 import { turnType } from "./types/turn"
 import { useInfo } from "./types/callAlert"
-import activeTurn from "./types/active"
-import currentBegin from "./types/activebegin"
+import { useTurn } from "./types/active"
+import { useBegin } from "./types/activebegin"
 import { markedType } from "./types/mark"
 import { stateProperty } from "./types/state"
 import { usePlaceBorder } from "./types/placeBorder"
-import { match } from "./room/winner"
-import clearPositions from "./room/clear"
 import { useExit } from "./types/msgExit"
 import { exitProperty } from "./types/exit"
 import positionReserved from "./room/positionReserved"
 import { useActiveComponent } from "./globalState"
+import { usePosition } from "./types/position"
+import { useDuel } from "./types/duel"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -39,6 +39,16 @@ const Index = () => {
     let placeBorder = usePlaceBorder()
     let exit = useExit()
     let active = useActiveComponent()
+    let turn = useTurn()
+    let begin = useBegin()
+    let position = usePosition()
+    let duel = useDuel()
+
+    const clearPositions = () => {
+        position.setCollumn1({pos1: "", pos2: "", pos3: ""})
+        position.setCollumn2({pos1: "", pos2: "", pos3: ""})
+        position.setCollumn3({pos1: "", pos2: "", pos3: ""})
+    }
 
     useEffect(() => {
         if (ws.readyState == ws.CLOSED ||
@@ -113,7 +123,7 @@ const Index = () => {
 
             case "TURN":
                 let receiveTurn = property.msg as turnType
-                activeTurn.state = false;
+                turn.setState(turn.state = false);
                 bs.state = false;
 
                 if (receiveTurn.nick == status.nick) {
@@ -133,20 +143,19 @@ const Index = () => {
                     info.setActive(info.active = false);
                 }
             
-                currentBegin.state = false;
+                begin.setState(begin.state = false);
                 break;
 
             case "MARKED":
                 let value = property.msg as markedType
-                positionReserved(value.collumn, value.position, value.mark, status.mark);
+                positionReserved(value.collumn, value.position, value.mark, status.mark, position);
                 break;
 
             case "STATE":
                 let receiveState = property.msg as stateProperty
                 clearPositions();
-                match.symbol = "";
-                match.HasWinner = false;
-                currentBegin.state = true;
+                duel.setState(duel.state = false);
+                begin.setState(begin.state = true);
 
                 if (status.nick == receiveState.winner) { 
                     placeBorder.setYou(++placeBorder.you);
@@ -161,11 +170,12 @@ const Index = () => {
 
             case "TIE":
                 clearPositions()
-                if (match.tie) 
-                    placeBorder.setTies(++placeBorder.ties);
+
+                if (duel.state) placeBorder.setTies(++placeBorder.ties);
             
-                match.tie = false;
-                currentBegin.state = true;
+                duel.setState(duel.state = false);
+                begin.setState(begin.state = true);
+                info.setActive(info.active = true);
 
                 if (status.mark == "X") playersTurn("begin", status.uuid, opponent.uuid);
 
@@ -187,7 +197,7 @@ const Index = () => {
                 exit.setMsg(exit.msg  = `${receiveExit.nick} ${receiveExit.value}`)
                 exit.setState(exit.state = true);
                 exit.setUpdate(exit.update = true);
-                info.setActive(info.active = false);
+                info.setActive(info.active = true);
                 active.setScoreBoard(false)
 
                 setTimeout(() => {

@@ -1,144 +1,140 @@
-import positions from "../types/position";
 import send from "../websocket/send";
-import detectedTIE from "./tie";
+import { pos } from "./position";
 
-var match = {
-    HasWinner:false,
-    symbol:"",
-    tie:false
-}
+const WINNER = (mark: string, nick: string, position: pos): boolean => {
+    let winner = false
+    let symbol = ""
 
-const WINNER = (mark: string, nick: string): void => {
     // X | X | X 
     //   |   |   
     //   |   |
-    if (positions.collumn1.pos1 == "X" &&
-        positions.collumn1.pos2 == "X" &&
-        positions.collumn1.pos3 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos1 == "X" &&
+        position.collumn1.pos2 == "X" &&
+        position.collumn1.pos3 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos1 == "O" &&
-        positions.collumn1.pos2 == "O" &&
-        positions.collumn1.pos3 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos1 == "O" &&
+        position.collumn1.pos2 == "O" &&
+        position.collumn1.pos3 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     //   |   |   
     // X | X | X 
     //   |   |
-    if (positions.collumn2.pos1 == "X" &&
-        positions.collumn2.pos2 == "X" &&
-        positions.collumn2.pos3 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn2.pos1 == "X" &&
+        position.collumn2.pos2 == "X" &&
+        position.collumn2.pos3 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn2.pos1 == "O" &&
-        positions.collumn2.pos2 == "O" &&
-        positions.collumn2.pos3 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn2.pos1 == "O" &&
+        position.collumn2.pos2 == "O" &&
+        position.collumn2.pos3 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     //   |   |   
     //   |   |
     // X | X | X 
-    if (positions.collumn3.pos1 == "X" &&
-        positions.collumn3.pos2 == "X" &&
-        positions.collumn3.pos3 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn3.pos1 == "X" &&
+        position.collumn3.pos2 == "X" &&
+        position.collumn3.pos3 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn3.pos1 == "O" &&
-        positions.collumn3.pos2 == "O" &&
-        positions.collumn3.pos3 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn3.pos1 == "O" &&
+        position.collumn3.pos2 == "O" &&
+        position.collumn3.pos3 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     // X |   |   
     // X |   |
     // X |   |  
-    if (positions.collumn1.pos1 == "X" &&
-        positions.collumn2.pos1 == "X" &&
-        positions.collumn3.pos1 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos1 == "X" &&
+        position.collumn2.pos1 == "X" &&
+        position.collumn3.pos1 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos1 == "O" &&
-        positions.collumn2.pos1 == "O" &&
-        positions.collumn3.pos1 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos1 == "O" &&
+        position.collumn2.pos1 == "O" &&
+        position.collumn3.pos1 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     //   | X |   
     //   | X |
     //   | X |  
-    if (positions.collumn1.pos2 == "X" &&
-        positions.collumn2.pos2 == "X" &&
-        positions.collumn3.pos2 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos2 == "X" &&
+        position.collumn2.pos2 == "X" &&
+        position.collumn3.pos2 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos2 == "O" &&
-        positions.collumn2.pos2 == "O" &&
-        positions.collumn3.pos2 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos2 == "O" &&
+        position.collumn2.pos2 == "O" &&
+        position.collumn3.pos2 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     //   |   | X  
     //   |   | X
     //   |   | X
-    if (positions.collumn1.pos3 == "X" &&
-        positions.collumn2.pos3 == "X" &&
-        positions.collumn3.pos3 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos3 == "X" &&
+        position.collumn2.pos3 == "X" &&
+        position.collumn3.pos3 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos3 == "O" &&
-        positions.collumn2.pos3 == "O" &&
-        positions.collumn3.pos3 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos3 == "O" &&
+        position.collumn2.pos3 == "O" &&
+        position.collumn3.pos3 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     // X |   |   
     //   | X | 
     //   |   | X
-    if (positions.collumn1.pos1 == "X" &&
-        positions.collumn2.pos2 == "X" &&
-        positions.collumn3.pos3 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos1 == "X" &&
+        position.collumn2.pos2 == "X" &&
+        position.collumn3.pos3 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos1 == "O" &&
-        positions.collumn2.pos2 == "O" &&
-        positions.collumn3.pos3 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos1 == "O" &&
+        position.collumn2.pos2 == "O" &&
+        position.collumn3.pos3 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
     //   |   | X
     //   | X | 
     // X |   | 
-    if (positions.collumn1.pos3 == "X" &&
-        positions.collumn2.pos2 == "X" &&
-        positions.collumn3.pos1 == "X") {
-            match.HasWinner = true;
-            match.symbol = "X";
+    if (position.collumn1.pos3 == "X" &&
+        position.collumn2.pos2 == "X" &&
+        position.collumn3.pos1 == "X") {
+            winner = true;
+            symbol = "X";
     }
-    if (positions.collumn1.pos3 == "O" &&
-        positions.collumn2.pos2 == "O" &&
-        positions.collumn3.pos1 == "O") {
-            match.HasWinner = true;
-            match.symbol = "O";
+    if (position.collumn1.pos3 == "O" &&
+        position.collumn2.pos2 == "O" &&
+        position.collumn3.pos1 == "O") {
+            winner = true;
+            symbol = "O";
     }
 
-    if (match.HasWinner) {
-        if (mark == match.symbol) {
+    if (winner) {
+        if (mark == symbol) {
             setTimeout(() => {
                 send({
                     type:"STATE",
@@ -150,14 +146,8 @@ const WINNER = (mark: string, nick: string): void => {
         }
     }
 
-    detectedTIE();
-
-    if (match.HasWinner) console.log("winner detected");
+    if (winner) console.log("winner detected");
+    return winner
 }
 
-setInterval(() => {
-    if (match.HasWinner || match.tie) return;
-    // WINNER();
-},300);
-
-export {match}
+export default WINNER

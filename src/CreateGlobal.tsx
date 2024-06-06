@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from "react"
+import { Children, FC, ReactElement, useState } from "react"
 import { CreateStatus } from "./types/playerStatus"
 import { CreateInvite } from "./types/invite"
 import { CreatePage } from "./types/page"
@@ -8,6 +8,10 @@ import { CreatePlaceBorder } from "./types/placeBorder"
 import { CreateExit } from "./types/msgExit"
 import { CreateDataPopUp } from "./types/dataPopUp"
 import { CreateInfo } from "./types/callAlert"
+import { CreateBegin } from "./types/activebegin"
+import { CreateTurn } from "./types/active"
+import { CreatePosition, rows } from "./types/position"
+import { CreateDuel } from "./types/duel"
 
 interface CreateGlobalProps {
     children: ReactElement
@@ -43,6 +47,24 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     let [popUpId, setPopUpId] = useState<string>("")
     let [infoActive, setInfoActive] = useState<boolean>(false)
     let [infoMsg,setInfoMsg] = useState("")
+    let [begin, setBegin] = useState(false)
+    let [turn, setTurn] = useState(false)
+    let [pos1, setPos1] = useState({
+        pos1: "",
+        pos2: "",
+        pos3: ""
+    } as rows)
+    let [pos2, setPos2] = useState({
+        pos1: "",
+        pos2: "",
+        pos3: ""
+    } as rows)
+    let [pos3, setPos3] = useState({
+        pos1: "",
+        pos2: "",
+        pos3: ""
+    } as rows)
+    let [duel, setDuel] = useState(false)
 
     return (
         <CreateStatus.Provider value={{available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
@@ -54,7 +76,15 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
                                 <CreateExit.Provider value={{msg: msg, setMsg: setMsg, setState: setStateExit, setUpdate: setUpadateExit, state: stateExit, update: updateExit}}>
                                     <CreateDataPopUp.Provider value={{hidden: popUpHidden, id: popUpId, message: popUpMessage, nick: popUpNick, setHidden: setPopUpHidden, setId: setPopUpId, setMessage: setPopUpMessage, setNick: setPopUpNick, setType: setPopUpType, type: popUpType}}>
                                         <CreateInfo.Provider value={{active: infoActive, message: infoMsg, setActive: setInfoActive, setMessage: setInfoMsg}}>
-                                            {children}
+                                            <CreateBegin.Provider value={{setState: setBegin, state: begin}}>
+                                                <CreateTurn.Provider value={{setState: setTurn, state: turn}}>
+                                                    <CreatePosition.Provider value={{collumn1: pos1, collumn2: pos2, collumn3: pos3, setCollumn1: setPos1, setCollumn2: setPos2, setCollumn3: setPos3}}>
+                                                        <CreateDuel.Provider value={{setState: setDuel, state: duel}}>
+                                                            {children}
+                                                        </CreateDuel.Provider>
+                                                    </CreatePosition.Provider>
+                                                </CreateTurn.Provider>
+                                            </CreateBegin.Provider>
                                         </CreateInfo.Provider>
                                     </CreateDataPopUp.Provider>
                                 </CreateExit.Provider>

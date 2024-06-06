@@ -1,17 +1,17 @@
-import positions from "../types/position"
+// import positions from "../types/position"
 import send from "../websocket/send";
-import { match } from "./winner"
+import { pos } from "./position";
 
-const detectedTIE = () => {
-    if (match.HasWinner) return;
+const detectedTIE = (position: pos) => {
+    let result = false
 
-    if ((positions.collumn1.pos1 != "" && positions.collumn1.pos2 != "" && positions.collumn1.pos3 != "") &&
-        (positions.collumn2.pos1 != "" && positions.collumn2.pos2 != "" && positions.collumn2.pos3 != "") && 
-        (positions.collumn3.pos1 != "" && positions.collumn3.pos2 != "" && positions.collumn3.pos3 != "")) {
-            match.tie = true;
+    if ((position.collumn1.pos1.length != 0 && position.collumn1.pos2.length != 0 && position.collumn1.pos3.length != 0) &&
+        (position.collumn2.pos1.length != 0 && position.collumn2.pos2.length != 0 && position.collumn2.pos3.length != 0) && 
+        (position.collumn3.pos1.length != 0 && position.collumn3.pos2.length != 0 && position.collumn3.pos3.length != 0)) {
+            result = true;
     }
 
-    if (match.tie) {
+    if (result) {
         setTimeout(() => {
             send({
                 type:"TIE",
@@ -22,7 +22,8 @@ const detectedTIE = () => {
         },1400)
     }
 
-    if (match.tie) console.log("detected tie");
+    if (result) console.log("detected tie");
+    return result
 }
 
 export default detectedTIE;

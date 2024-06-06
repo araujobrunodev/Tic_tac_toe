@@ -32,13 +32,4 @@ function playersTurn (turn:string, uuid: string, opponentUuid: string) {
     }
 }
 
-setInterval(() => {
-    // if (activeTurn.state && !currentBegin.state) {
-        // callInfo.message = "";
-        // callInfo.active = true;
-        // perfil.setYourTurn(false);
-        // playersTurn("change");
-    // } 
-},100)
-
 export { playersTurn };

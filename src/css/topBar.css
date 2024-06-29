@@ -19,4 +19,13 @@
     #_topBar {
         margin: 0rem 30rem;
     }
+
+    #arrow {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    #NamePage {
+        font-size: 1.8rem;
+    }
 }

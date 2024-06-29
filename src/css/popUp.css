@@ -4,12 +4,12 @@
     border: 1px solid white;
     border-radius: 0px 0px 12px 12px;
     background-color: #B3B3B3;
-    margin: 0px 30px;
+    margin: 0px 3rem;
 }
 
 #progress_body {
     width: 100%;
-    height: 10px;
+    height: 5px;
     background-color: gray;
 }
 
@@ -30,8 +30,8 @@
 #message {
     color: #FFFFFF;
     font-family: "Inter", arial;
-    font-size: 1.3rem;
-    font-weight: 550;
+    font-size: 1.1rem;
+    font-weight: 500;
     text-indent: 12px;
     margin: 0px;
 }
@@ -40,7 +40,7 @@
     display: flex;
     flex-grow: 1;
     flex-direction: row;
-    margin: 6% 22px;
+    margin: 0.4rem 2rem;
     gap: 20px;
 }
 
@@ -57,7 +57,7 @@
     color: #3C3C3C;
     line-height: 1px;
     text-indent: -11px;
-    border: 1.6px solid black;
+    /* border: 1.6px solid black; */
     background-color: #75CDFF;
     flex: 1;
 }
@@ -66,7 +66,7 @@
     color: #3C3C3C;
     line-height: 1px;
     text-indent: -11px;
-    border: 1.6px solid black;
+    /* border: 1.6px solid black; */
     background-color: #FF6767;
     padding: 0px;
 }
@@ -76,4 +76,14 @@
     filter: grayscale(10%);
     color: white;
     border-color: none;
+}
+
+@media (min-width: 1281px) {
+    #popUp_body {
+        margin: 0rem 30rem;
+    }
+
+    .buttons {
+        margin: 0.2rem 2rem;
+    }
 }

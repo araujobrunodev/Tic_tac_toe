@@ -1,12 +1,11 @@
-import { FC } from "react";
 import Button from "./button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDataPopUp } from "../types/dataPopUp";
 import send from "../websocket/send";
 import { useOpponent } from "../types/room";
-import "../css/popUp.css"
 import { useActiveComponent } from "../globalState";
+import "../css/popUp.css"
 
 const PopUp = () => {
   let [progress, setProgress] = useState(0)
@@ -25,8 +24,7 @@ const PopUp = () => {
 
   useEffect(() => {
   if (progress == 5) { setProgress(0); clearPopUp() }
-
-    dataPopUp.type == "invite" ? setHeight(19) : setHeight(13);
+    setHeight(14)
 
     let time = setInterval(() => {
       setProgress(++progress);

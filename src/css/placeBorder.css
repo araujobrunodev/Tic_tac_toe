@@ -31,14 +31,14 @@
 
 @media (min-width: 1281px) {
     #warn {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 
     #place_border {
-        margin: 1rem 40rem;
+        margin: 0rem 29rem;
     }
 
     .info_scoreboard {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 }

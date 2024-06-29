@@ -3,10 +3,6 @@ body {
   overflow: none;
 }
 
-.main {
-  gap: 7rem;
-}
-
 /*logo*/
 .container-logo {
   display: flex;
@@ -85,12 +81,12 @@ body {
     margin: 2rem 0rem;
     justify-content: center;
     padding: 0px;
-    font-size: 8rem;
-    gap: 12rem;
+    font-size: 5rem;
+    gap: 8rem;
   }
 
   ._Inputs {
-    padding: 13rem 45rem;
+    padding: 5rem 25rem;
   }
 
   #play {

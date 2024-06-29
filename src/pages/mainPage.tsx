@@ -26,7 +26,7 @@ const Main = () => {
       </div>
 
       <div className='_Inputs'>
-        <Input value="" id="Nickname" />
+        <Input value="" placeholder="Nickname" id="Nickname" />
         <Button
           id="play"
           value="Play"

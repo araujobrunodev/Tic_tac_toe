@@ -7,3 +7,9 @@
     font-weight: 600;
     font-size: 24px;
 }
+
+@media (min-width: 1281px) {
+    #warn2 {
+        font-size: 1.8rem;
+    }
+}

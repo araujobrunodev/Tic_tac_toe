@@ -13,7 +13,7 @@
     margin: 20px 40px;
 }
 
-#you,#empty,#opponent {
+.info_scoreboard {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -27,4 +27,18 @@
 .Span {
     text-align: center;
     font-weight: 600;
+}
+
+@media (min-width: 1281px) {
+    #warn {
+        font-size: 1.5rem;
+    }
+
+    #place_border {
+        margin: 0rem 29rem;
+    }
+
+    .info_scoreboard {
+        font-size: 1.3rem;
+    }
 }

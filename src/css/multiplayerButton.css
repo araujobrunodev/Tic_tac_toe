@@ -3,8 +3,7 @@
     flex-direction: column;
     height: 12.5rem;
     gap: 74px;
-    padding-top: 55%;
-    padding: 55% 50px 0px 50px;
+    margin: 11rem 4rem;
 }
 
 .multiplayer_button {
@@ -20,4 +19,10 @@
     font-weight: 600;
     font-size: 23px;
     flex: 1;
+}
+
+@media (min-width: 1281px) {
+    #buttons {
+        margin: 7rem 30rem;
+    }
 }

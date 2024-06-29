@@ -9,8 +9,8 @@ body {
   flex-flow: wrap column;
   color: white;
   font-size: 5em;
-  font-family: 'Bungee Spice',monospace;
-  padding: 0rem 3rem 5rem 3rem;
+  font-family: 'Bungee', sans-serif;
+  margin: 0rem 3rem;
   user-select: none;
 }
 
@@ -36,19 +36,22 @@ body {
 /*inputs*/
 
 ._Inputs {
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
-  left: 5.5rem;
-  padding: 0% 20% 0% 20%;
+  margin: 0rem 5rem;
+  gap: 1rem;
 }
 
 #Nickname {
   border-style: none;
   border-radius: 6px;
   border-bottom: 4.5px solid #7000FF;
-
+  background-color: white;
   text-indent: 8px;
   font-size: 1.8rem;
+  flex: 1;
+  color: black;
 }
 
 #play {
@@ -57,12 +60,9 @@ body {
   color: white;
   background-color: #7E00FD;
 
-  border: 0.6px solid white;
-
   line-height: 0.5rem;
-
-  margin-top: 1.3rem;
   user-select: none;
+  flex: 1;
 }
 
 /* warn */
@@ -72,4 +72,25 @@ body {
   font-family: "Inter",arial;
   text-align: center;
   padding: 0% 20% 0% 20%;
+}
+
+/* pc */
+@media (min-width: 1281px) {
+  .container-logo {
+    flex-flow: wrap row;
+    margin: 2rem 0rem;
+    justify-content: center;
+    padding: 0px;
+    font-size: 5rem;
+    gap: 8rem;
+  }
+
+  ._Inputs {
+    padding: 5rem 25rem;
+  }
+
+  #play {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }

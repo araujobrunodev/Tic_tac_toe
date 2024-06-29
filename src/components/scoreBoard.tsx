@@ -13,13 +13,13 @@ const ScoreBoard = () => {
 
   return (<>
     {active.ScoreBoard ? (<div id="place_border">
-      <div id="you">
+      <div className="info_scoreboard" id="you">
         {status.nick} <span className="Span">{placeBorder.you}</span>
       </div>
-      <div id="empty">
+      <div className="info_scoreboard" id="empty">
         Ties <span className="Span" id="middle">{placeBorder.ties}</span>
       </div>
-      <div id="opponent">
+      <div className="info_scoreboard" id="opponent">
         {opponent.nick} <span className="Span">{placeBorder.opponnet}</span>
       </div>
     </div>)

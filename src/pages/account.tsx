@@ -15,13 +15,13 @@ const Account = () => {
 
     return (<>
         <div id="_info"> 
-            <div id="name">
+            <div className="info_account" id="name">
                 Name: <span id="value-name">{
                 status.nick
                 }</span>
             </div>
 
-            <div id="id">
+            <div className="info_account" id="id">
                 ID: <span id="value-id">{
                     status.uuid
                 }

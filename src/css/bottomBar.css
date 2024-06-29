@@ -1,10 +1,14 @@
 #_bottomBar {
     display: flex;
-
+    flex-shrink: 1;
     flex-direction: row;
     justify-content: space-around;
-    
     padding-top: 12px;
-    
     border-top: 1px solid #445A55;
+}
+
+@media (min-width: 1281px) {
+    #_bottomBar {
+        margin: 0rem 15rem;
+    }
 }

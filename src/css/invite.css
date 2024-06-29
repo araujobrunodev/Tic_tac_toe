@@ -1,9 +1,9 @@
 #local-id {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
     height: 7.1rem;
-    margin: 50% 12%;
+    margin: 17rem 4rem;
 }
 
 #send-id {
@@ -15,6 +15,7 @@
     font-weight: 600;
     text-indent: 7px;
     background-color: white;
+    flex: 1;
 }
 
 #send {
@@ -26,5 +27,12 @@
     font-weight: 600;
     letter-spacing: 1.3px;
     padding: 0px;
-    flex-grow: 1;
+    flex: 1;
+}
+
+@media (min-width: 1281px) {
+    #local-id {
+        margin: 24rem 50rem;
+        height: 8.1rem;
+    }
 }

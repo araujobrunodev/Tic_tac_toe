@@ -26,7 +26,9 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     let [available, setAvailable] = useState<boolean>(false)
     let [yourTurn, setYourTurn] = useState<boolean>(false) 
     let [inviteUuid, setInviteUuid] = useState<string>("")   
-    let [inviteNick, setInviteNick] = useState<string>("")   
+    let [inviteNick, setInviteNick] = useState<string>("")
+    let [inviteStrangers, setInviteStrengers] = useState(false)
+    let [randomRoom, setRandomRoom] = useState(false)   
     let [value, setValue] = useState<string>("")
     let [name, setName] = useState<string>("")
     let [bars,setBars] = useState<boolean>(true)   
@@ -67,7 +69,7 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     let [duel, setDuel] = useState(false)
 
     return (
-        <CreateStatus.Provider value={{available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
+        <CreateStatus.Provider value={{inviteStrangers: inviteStrangers, setInviteStrangers: setInviteStrengers, randomRoom: randomRoom,  setRandomRoom: setRandomRoom,available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
             <CreateInvite.Provider value={{nick:inviteNick, setNick: setInviteNick, setUuid: setInviteUuid, setValue: setValue, uuid: inviteUuid, value: value}}>
                 <CreatePage.Provider value={{name: name, OpenBars: bars, setName: setName, setOpenBars: setBars}}>
                     <ActiveComponent.Provider value={{ScoreBoard: active, setScoreBoard: setActive}}>

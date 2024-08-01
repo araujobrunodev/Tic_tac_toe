@@ -1,4 +1,4 @@
-const url = `wss://${"backend-ommm.onrender.com"}`;
+const url = `ws://localhost:3000`//`wss://${"backend-ommm.onrender.com"}`;
 let ws = new WebSocket(url);
 
 function connect () {

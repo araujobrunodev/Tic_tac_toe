@@ -8,7 +8,8 @@ interface ButtonProps {
     /** button identification */
     id: string,
     /** hide feature*/
-    hidden?: boolean
+    hidden?: boolean,
+    className?: string
 }
 
 const Button: FC<ButtonProps> = (props) => {
@@ -17,6 +18,7 @@ const Button: FC<ButtonProps> = (props) => {
             id={props.id}
             onClick={() => props.onClick()}
             hidden={props.hidden}
+            className={props.className}
         >
         {props.value}
         </button>

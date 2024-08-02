@@ -1,12 +1,12 @@
 #_info {
     display: flex;
     flex-direction: column;
-    margin: 4rem 1rem;
+    margin: 1rem 1rem;
     border-radius: 6px;
     background-color: #505050;
     border-bottom: 8px solid rgba(0, 0, 0, 0.35);
     padding: 1rem;
-    padding-bottom: 13rem;
+    padding-bottom: 2rem;
     gap: 2rem;
 }
 
@@ -39,6 +39,36 @@
     color: #14FF00;
 
     font-size: 25px
+}
+
+.checkbox {
+    display: flex;
+    flex-flow: wrap column;
+}
+
+.check_input {
+    appearance: none;
+    width: 8rem;
+    height: 3rem;
+}
+
+.check_input::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #AEAEAE;
+    background-image: url("../../public/Rectangle.svg");
+    background-position-y: center;
+    background-position-x: left 8%;
+    background-repeat: no-repeat;
+    transition: 1s;
+    display: flex;
+}
+
+.check_input:checked::before {
+    background-color: #14FF00;
+    background-position-x: right 8%;
 }
 
 @media (min-width: 1281px) {

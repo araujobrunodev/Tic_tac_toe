@@ -3,10 +3,10 @@ import Main from './pages/mainPage'
 import Multiplayer from './pages/multiplayer'
 import Page404 from "./pages/page404"
 import GamePage from "./pages/Game"
-import Notification from "./pages/notification"
 import Account from "./pages/account"
 import Invite from "./pages/invite"
 import MainContainer from "./pages/mainContainer"
+import ListOfAvailable from "./pages/listOfAvailable"
 
 const router = createHashRouter([
   {
@@ -31,12 +31,12 @@ const router = createHashRouter([
         element: <MainContainer page={<Account/>}/>
       },
       {
-        path:"/notification",
-        element: <MainContainer page={<Notification/>}/>
-      },
-      {
         path:"/invite",
         element: <MainContainer page={<Invite/>}/>
+      }, 
+      {
+        path: "/listOfAvailable",
+        element: <MainContainer page={<ListOfAvailable/>}/>
       }
     ]
   }

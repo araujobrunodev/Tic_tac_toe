@@ -5,6 +5,7 @@ import { markedType } from "./mark";
 import { stateProperty } from "./state";
 import { tieProperty } from "./tie";
 import { exitProperty } from "./exit";
+import { available } from "./availables"
 
 interface ReceiverProperty {
     /** type of response*/
@@ -17,7 +18,8 @@ interface ReceiverProperty {
         markedType | 
         stateProperty | 
         tieProperty | 
-        exitProperty
+        exitProperty |
+        available[]
 }
 
 export type receiverProperty = ReceiverProperty;

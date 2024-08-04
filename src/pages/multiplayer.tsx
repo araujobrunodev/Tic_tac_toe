@@ -11,6 +11,7 @@ const Multiplayer = () => {
   let page = usePage()
   let [appear, setAppear] = useState(true);
   let status = useStatus();
+
   const checkboxValue = (type: "random room" | "invite strangers",value:boolean) => {
     switch (type) {
       case "invite strangers":
@@ -30,7 +31,7 @@ const Multiplayer = () => {
       type: "pop-up_permission",
       msg: {
         nick: status.nick,
-        uuid: status.uuid,
+        id: status.uuid,
         inviteStrangers: status.inviteStrangers,
         randomRoom: status.randomRoom
       }
@@ -73,10 +74,17 @@ const Multiplayer = () => {
       :
       <div id="buttons">
       <Link className="multiplayer_button" to="/invite">
-        <Button className="theme_button" id="invite"  value="Invite someone" onClick={() => { }}></Button>
+        <Button className="theme_button" value="Invite someone" onClick={() => { }}></Button>
       </Link>
-      <Link className="multiplayer_button" to="/chat">
-        <Button className="theme_button" id="chat" value="Chat" hidden={true} onClick={() => { }}></Button>
+      <Link className="multiplayer_button" to="/listOfAvailable">
+        <Button className="theme_button" value="list of available" onClick={() => {
+          send({
+            type: "available-list",
+            msg: {
+              id: status.uuid
+            }
+          })
+        }}></Button>
       </Link>
     </div>
     }

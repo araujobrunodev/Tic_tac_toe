@@ -6,7 +6,7 @@ interface ButtonProps {
     /** callback */
     onClick: () => void,
     /** button identification */
-    id: string,
+    id?: string,
     /** hide feature*/
     hidden?: boolean,
     className?: string

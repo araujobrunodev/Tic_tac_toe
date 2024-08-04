@@ -67,8 +67,9 @@ const Index = () => {
     useEffect(() => {
         switch (property.type) {
             case "CONNECTED":
-                let uuid = (property.msg as msgUUid).uuid
-                status.setUuid(status.uuid = uuid)
+                let newStatus = (property.msg as msgUUid)
+                status.setUuid(status.uuid = newStatus.uuid)
+                status.setNick(status.nick = newStatus.newNick)
                 break;
 
             case "list-of-available":

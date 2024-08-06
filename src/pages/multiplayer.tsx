@@ -28,7 +28,7 @@ const Multiplayer = () => {
     sessionStorage.setItem("first-appear", "false")
     setAppear(false)
     send({
-      type: "pop-up_permission",
+      type: "change-permission",
       msg: {
         nick: status.nick,
         id: status.uuid,

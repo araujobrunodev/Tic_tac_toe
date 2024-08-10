@@ -86,6 +86,9 @@ const Multiplayer = () => {
           })
         }}></Button>
       </Link>
+      <Link className="multiplayer_button" to="/randomRoom">
+        <Button onClick={() => {}} value="Random room" className="theme_button"/>
+      </Link>
     </div>
     }
     </>

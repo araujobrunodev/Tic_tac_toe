@@ -7,6 +7,7 @@ import Account from "./pages/account"
 import Invite from "./pages/invite"
 import MainContainer from "./pages/mainContainer"
 import ListOfAvailable from "./pages/listOfAvailable"
+import RandomRoom from "./pages/randomRoom"
 
 const router = createHashRouter([
   {
@@ -37,6 +38,10 @@ const router = createHashRouter([
       {
         path: "/listOfAvailable",
         element: <MainContainer page={<ListOfAvailable/>}/>
+      },
+      {
+        path: "/randomRoom",
+        element: <MainContainer page={<RandomRoom/>}/>
       }
     ]
   }

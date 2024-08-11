@@ -1,10 +1,11 @@
-import { FC, ReactElement } from "react"
+import { FC, ReactElement, useEffect, useState } from "react"
 import TopBar from "../components/topBar"
 import BottomBar from "../components/bottomBar"
 import Disconnect from "../components/disconnect"
 import PopUp from "../components/popUp"
 import { usePage } from "../types/page"
 import RedirectClient from "../components/redirect"
+import { ws } from "../websocket/connect"
 import "../css/mainContainer.css"
 
 interface MainContainerProps {
@@ -15,6 +16,15 @@ const MainContainer: FC<MainContainerProps> = ({
     page
 }) => {
     let Page = usePage()
+    let [connected, setConnected] = useState(false)
+
+    useEffect(() => {
+        let time = setTimeout(() => {
+            setConnected(ws.readyState == ws.OPEN)
+        }, 1000 * 5);
+
+        return () => clearTimeout(time)
+    },[connected])
     
     return (
         <div className="main_container">
@@ -27,7 +37,7 @@ const MainContainer: FC<MainContainerProps> = ({
                 {page}
             </div>
 
-            <Disconnect />
+            <Disconnect connected={connected}/>
 
             <BottomBar hidden={Page.OpenBars}/>
         </div>

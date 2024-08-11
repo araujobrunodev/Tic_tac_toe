@@ -28,6 +28,9 @@ import positionReserved from "./room/positionReserved"
 import { useActiveComponent } from "./globalState"
 import { usePosition } from "./types/position"
 import { useDuel } from "./types/duel"
+import { available } from "./types/availables"
+import { listOfAvailable, useListOfAvailable } from "./types/listOfAvailable"
+import { useBlockPlayers } from "./types/blockplayers"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -43,6 +46,8 @@ const Index = () => {
     let begin = useBegin()
     let position = usePosition()
     let duel = useDuel()
+    let availableList = useListOfAvailable()
+    let blockPlayers = useBlockPlayers()
 
     const clearPositions = () => {
         position.setCollumn1({pos1: "", pos2: "", pos3: ""})
@@ -64,8 +69,27 @@ const Index = () => {
     useEffect(() => {
         switch (property.type) {
             case "CONNECTED":
-                let uuid = (property.msg as msgUUid).uuid
-                status.setUuid(status.uuid = uuid)
+                let newStatus = (property.msg as msgUUid)
+                status.setUuid(status.uuid = newStatus.uuid)
+                status.setNick(status.nick = newStatus.newNick)
+                break;
+
+            case "list-of-available":
+                availableList.setPlayer(property.msg as available[])
+                break;
+
+            case "no-player-available-random-room":
+                blockPlayers.setLimit(true)
+                break;
+
+            case "invited-by-random-room":
+                const uuid = (property.msg as {uuid:string}).uuid
+
+                if (uuid.length == 0) return;
+
+                blockPlayers.setQueue(
+                    [...blockPlayers.queue, uuid]
+                );
                 break;
 
             case "INVITE":
@@ -208,6 +232,7 @@ const Index = () => {
                 clearPositions();
                 break;
         }
+        setProperty({} as receiverProperty)
     },[property.type])
 
     return (

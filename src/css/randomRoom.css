@@ -1,0 +1,37 @@
+.random_room {
+    flex: 1;
+    display: flex;
+    flex-flow: wrap column;
+    margin: 1rem 0rem;
+    margin-top: 13rem;
+}
+
+.icon_loading {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.icon_loading img {
+    animation: 2s infinite;
+}
+
+.someone {
+    flex: 1;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+@keyframes scaleIt {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}

@@ -59,8 +59,7 @@
     border-radius: 10px;
     background-color: #AEAEAE;
     background-image: url("../../public/Rectangle.svg");
-    background-position-y: center;
-    background-position-x: left 8%;
+    background-position: 8% center;
     background-repeat: no-repeat;
     transition: 1s;
     display: flex;
@@ -68,7 +67,7 @@
 
 .check_input:checked::before {
     background-color: #14FF00;
-    background-position-x: right 8%;
+    background-position: 92% center;
 }
 
 @media (min-width: 1281px) {

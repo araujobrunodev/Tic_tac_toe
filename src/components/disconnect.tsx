@@ -1,15 +1,17 @@
 import { ws } from "../websocket/connect"
-import { useEffect, useState } from "react"
+import { useEffect, useState, FC } from "react"
 import "../css/disconnect.css"
 
-const Disconnect = () => {
+interface DisconnectProps {
+    connected: boolean
+}
+
+const Disconnect:FC<DisconnectProps> = ({connected}) => {
     let [tryReconnect,setTryReconnect] = useState<number>(0)
     let [hidden, setHidden] = useState<boolean>(true)
     let lossOfConnection = sessionStorage.getItem("loss_of_connection")
     
     useEffect(() => {
-        let connected = ws.readyState == ws.OPEN
-
         if (connected) {
             setTryReconnect(0)
             return setHidden(true)

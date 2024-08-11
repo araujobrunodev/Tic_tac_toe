@@ -50,7 +50,6 @@ const RandomRoom = () => {
                 }
             })
 
-            // setNoChangesInBlockPlayers(blockPlayers.queue.length)
         },1000 * 20)
 
         return () => clearTimeout(time);

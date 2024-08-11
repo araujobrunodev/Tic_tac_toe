@@ -81,7 +81,7 @@ const RandomRoom = () => {
         let updateLimit = setTimeout(() => {
             blockPlayers.setQueue(blockPlayers.queue = [])
             blockPlayers.setLimit(blockPlayers.limit = false)
-        }, 1000 * 1 * 1)
+        }, 1000 * 60 * 1)
 
         return () => clearTimeout(updateLimit) 
     },[blockPlayers.limit])

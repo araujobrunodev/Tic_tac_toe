@@ -4,7 +4,6 @@
     margin: 1rem 1rem;
     border-radius: 6px;
     background-color: #505050;
-    border-bottom: 8px solid rgba(0, 0, 0, 0.35);
     padding: 1rem;
     padding-bottom: 2rem;
     gap: 2rem;
@@ -70,24 +69,33 @@
     background-position: 92% center;
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1081px) {
     #_info {
-        margin: 2rem 25rem;
-        padding-bottom: 9rem;
-        gap: 2rem;
+        margin: 2rem 17rem;
+        padding-bottom: 1rem;
+        gap: 1rem;
     }
 
     .info_account {
         border-width: 2px;
-        font-size: 2rem;
+        font-size: 1.2rem;
         border-radius: 12px;
     }
 
     #value-id {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     #copy {
-        font-size: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .check_input {
+        width: 12rem;
+        height: 2rem;
+    }
+
+    .check_input::before {
+        background-size: 14%;
     }
 }

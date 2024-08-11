@@ -146,7 +146,6 @@ const WINNER = (mark: string, nick: string, position: pos): boolean => {
         }
     }
 
-    if (winner) console.log("winner detected");
     return winner
 }
 

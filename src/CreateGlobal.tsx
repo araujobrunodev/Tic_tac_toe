@@ -14,6 +14,7 @@ import { CreatePosition, rows } from "./types/position"
 import { CreateDuel } from "./types/duel"
 import { CreateListOfAvailable, listOfAvailable } from "./types/listOfAvailable"
 import { available } from "./types/availables"
+import { CreateBlockPlayers } from "./types/blockplayers"
 
 interface CreateGlobalProps {
     children: ReactElement
@@ -70,6 +71,8 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     } as rows)
     let [duel, setDuel] = useState(false)
     let [player, setPlayer] = useState([] as available[])
+    let [blocks, setBlocks] = useState([] as string[])
+    let [blockLimit, setBlockLimit] = useState(false)
 
     return (
         <CreateStatus.Provider value={{inviteStrangers: inviteStrangers, setInviteStrangers: setInviteStrengers, randomRoom: randomRoom,  setRandomRoom: setRandomRoom,available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
@@ -86,7 +89,9 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
                                                     <CreatePosition.Provider value={{collumn1: pos1, collumn2: pos2, collumn3: pos3, setCollumn1: setPos1, setCollumn2: setPos2, setCollumn3: setPos3}}>
                                                         <CreateDuel.Provider value={{setState: setDuel, state: duel}}>
                                                             <CreateListOfAvailable.Provider value={{player: player, setPlayer: setPlayer}}>
-                                                                {children}
+                                                                <CreateBlockPlayers.Provider value={{limit: blockLimit, setLimit: setBlockLimit, queue: blocks, setQueue: setBlocks}}>
+                                                                    {children} 
+                                                                </CreateBlockPlayers.Provider>
                                                             </CreateListOfAvailable.Provider>
                                                         </CreateDuel.Provider>
                                                     </CreatePosition.Provider>

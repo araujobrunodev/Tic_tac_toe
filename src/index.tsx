@@ -30,6 +30,7 @@ import { usePosition } from "./types/position"
 import { useDuel } from "./types/duel"
 import { available } from "./types/availables"
 import { listOfAvailable, useListOfAvailable } from "./types/listOfAvailable"
+import { useBlockPlayers } from "./types/blockplayers"
 
 const Index = () => {
     let [property, setProperty] = useState({} as receiverProperty)
@@ -46,6 +47,7 @@ const Index = () => {
     let position = usePosition()
     let duel = useDuel()
     let availableList = useListOfAvailable()
+    let blockPlayers = useBlockPlayers()
 
     const clearPositions = () => {
         position.setCollumn1({pos1: "", pos2: "", pos3: ""})
@@ -74,6 +76,20 @@ const Index = () => {
 
             case "list-of-available":
                 availableList.setPlayer(property.msg as available[])
+                break;
+
+            case "no-player-available-random-room":
+                blockPlayers.setLimit(true)
+                break;
+
+            case "invited-by-random-room":
+                const uuid = (property.msg as {uuid:string}).uuid
+
+                if (uuid.length == 0) return;
+
+                blockPlayers.setQueue(
+                    [...blockPlayers.queue, uuid]
+                );
                 break;
 
             case "INVITE":

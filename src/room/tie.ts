@@ -22,7 +22,6 @@ const detectedTIE = (position: pos) => {
         },1400)
     }
 
-    if (result) console.log("detected tie");
     return result
 }
 

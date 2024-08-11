@@ -18,7 +18,9 @@ const Account = () => {
                 status.setRandomRoom(value)
                 break;
         }
+    }
 
+    useEffect(() => {
         send({
             type: "change-permission",
             msg: {
@@ -28,7 +30,7 @@ const Account = () => {
                 inviteStrangers: status.inviteStrangers
             }
         })
-    }
+    },[status.randomRoom, status.inviteStrangers])
 
     useEffect(() => {
         page.setName("ACCOUNT")

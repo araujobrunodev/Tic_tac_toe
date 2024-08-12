@@ -46,16 +46,12 @@
     border-bottom: none;
 }
 
-@media (min-width: 1281px) { 
+@media (min-width: 1081px) { 
     .main {
         gap: 1rem;
     }   
     .container {
-        height: 20rem;
-        margin: 0rem 27rem;
-    }
-
-    #warn {
-        font-size: 3.5rem;
+        height: 17rem;
+        margin: 0rem 22rem;
     }
 }

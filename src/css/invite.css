@@ -30,9 +30,9 @@
     flex: 1;
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1081px) {
     #local-id {
-        margin: 9rem 28rem;
+        margin: 4rem 24rem;
         height: 8.1rem;
     }
 }

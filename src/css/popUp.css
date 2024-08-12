@@ -78,9 +78,17 @@
     border-color: none;
 }
 
-@media (min-width: 1281px) {
+@media (min-width: 1081px) {
+    #_nick {
+        font-size: 1rem;
+    }
+
+    #message {
+        font-size: 0.8rem;
+    } 
+
     #popUp_body {
-        margin: 0rem 30rem;
+        margin: 0rem 23rem;
     }
 
     .buttons {

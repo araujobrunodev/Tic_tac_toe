@@ -35,3 +35,10 @@
         transform: scale(0.8);
     }
 }
+
+@media (min-width: 1081px) {
+    .random_room {
+        margin: 1rem 17rem;
+        margin-top: 10rem;
+    }
+}

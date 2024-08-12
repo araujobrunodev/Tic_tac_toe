@@ -75,7 +75,7 @@ body {
 }
 
 /* pc */
-@media (min-width: 1281px) {
+@media (min-width: 1081px) {
   .container-logo {
     flex-flow: wrap row;
     margin: 2rem 0rem;
@@ -86,7 +86,7 @@ body {
   }
 
   ._Inputs {
-    padding: 5rem 25rem;
+    padding: 5rem 20rem;
   }
 
   #play {

@@ -2,6 +2,10 @@ import { Link } from "react-router-dom"
 import { FC } from "react";
 import H1 from "./title";
 import "../css/topBar.css"
+import { useStatus } from "../types/playerStatus";
+import Button from "./button";
+import send from "../websocket/send";
+import { useOpponent } from "../types/room";
 
 interface TopBarProps {
   /** current page */
@@ -12,6 +16,9 @@ interface TopBarProps {
 }
 
 const TopBar: FC<TopBarProps> = (props) => {
+  const status = useStatus()
+  const opponent = useOpponent()
+
   return (
     <>{props.hidden && <div id="_topBar" hidden={props.hidden}>
     <Link to={props.previousPage}>
@@ -20,9 +27,15 @@ const TopBar: FC<TopBarProps> = (props) => {
 
     <H1 id="NamePage" value={props.pageName}/>
 
-    <Link to="/notification">
-      <img src={"/bell.png"} id="bell" hidden={true}/>
-    </Link>
+    <Button onClick={() => {
+      send({
+        type: "leave-room",
+        msg: {
+          me: status.uuid,
+          otherPlayer: opponent.uuid
+        }
+      })
+    }} value="LEAVE" className="leave"/>
   </div>}</>
   )
 }

@@ -127,6 +127,7 @@ const Index = () => {
                 Redirect.to = "playing";
                 bs.state = true
                 active.setScoreBoard(true)
+                status.setInRoom(status.inRoom = true)
 
                 play.playing = true;
 
@@ -223,6 +224,7 @@ const Index = () => {
                 exit.setUpdate(exit.update = true);
                 info.setActive(info.active = true);
                 active.setScoreBoard(false)
+                status.setInRoom(status.inRoom = false)
 
                 setTimeout(() => {
                     exit.setState(exit.state = false);

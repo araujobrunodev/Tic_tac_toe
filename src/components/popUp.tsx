@@ -6,6 +6,7 @@ import send from "../websocket/send";
 import { useOpponent } from "../types/room";
 import { useActiveComponent } from "../globalState";
 import "../css/popUp.css"
+import { useStatus } from "../types/playerStatus";
 
 const PopUp = () => {
   let [progress, setProgress] = useState(0)
@@ -13,6 +14,7 @@ const PopUp = () => {
   let opponent = useOpponent()
   let dataPopUp = useDataPopUp()
   let active = useActiveComponent()
+  let status = useStatus()
 
   const clearPopUp = () => {
     dataPopUp.setHidden(dataPopUp.hidden = true)
@@ -56,6 +58,7 @@ const PopUp = () => {
                   
                   setTimeout(() => {
                     active.setScoreBoard(true)
+                    status.setInRoom(status.inRoom = true)
                   },1000 * 2)
                   
                   send({

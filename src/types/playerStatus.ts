@@ -8,6 +8,7 @@ interface PlayerStatus {
     yourTurn: boolean,
     inviteStrangers: boolean,
     randomRoom: boolean,
+    inRoom: boolean,
     setRandomRoom: (j: boolean) => void,
     setInviteStrangers: (t: boolean) => void,
     setUuid: (a: string) => void,
@@ -15,6 +16,7 @@ interface PlayerStatus {
     setAvailable: (g: boolean) => void,
     setMark: (t: string)=> void,
     setYourTurn: (l: boolean) => void,
+    setInRoom: (wa: boolean) => void
 }
 
 const CreateStatus = createContext({} as PlayerStatus)

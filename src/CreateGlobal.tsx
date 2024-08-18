@@ -73,9 +73,10 @@ const CreateGlobal: FC<CreateGlobalProps> = ({
     let [player, setPlayer] = useState([] as available[])
     let [blocks, setBlocks] = useState([] as string[])
     let [blockLimit, setBlockLimit] = useState(false)
+    let [inRoom, setInRoom] = useState(false)
 
     return (
-        <CreateStatus.Provider value={{inviteStrangers: inviteStrangers, setInviteStrangers: setInviteStrengers, randomRoom: randomRoom,  setRandomRoom: setRandomRoom,available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
+        <CreateStatus.Provider value={{inRoom: inRoom, setInRoom: setInRoom,inviteStrangers: inviteStrangers, setInviteStrangers: setInviteStrengers, randomRoom: randomRoom,  setRandomRoom: setRandomRoom,available: available, setAvailable: setAvailable, nick: nick, setNick: setNick, setUuid: setUuid, setMark: setMark, setYourTurn: setYourTurn,uuid: uuid, mark: Mark, yourTurn: yourTurn}}>
             <CreateInvite.Provider value={{nick:inviteNick, setNick: setInviteNick, setUuid: setInviteUuid, setValue: setValue, uuid: inviteUuid, value: value}}>
                 <CreatePage.Provider value={{name: name, OpenBars: bars, setName: setName, setOpenBars: setBars}}>
                     <ActiveComponent.Provider value={{ScoreBoard: active, setScoreBoard: setActive}}>

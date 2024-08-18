@@ -15,6 +15,21 @@
     font-weight: 500;
 }
 
+.leave {
+    align-self: center;
+    background-color: #FF4E4E;
+    font-size: 15px;
+    max-height: 2.3rem;
+}
+
+.leave:active {
+    filter: grayscale(60%);
+}
+
+.leave::marker{
+    user-select: none;
+}
+
 @media (min-width: 1281px) {
     #_topBar {
         margin: 0rem 15rem;

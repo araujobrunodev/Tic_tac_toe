@@ -34,7 +34,7 @@ const Item:FC<ItemAvailable> = ({
 
                 setTimeout(() => {
                     send({
-                        type:"invite-stranger",
+                        type:"invite",
                         msg: {
                             strangerID: uuid,
                             yourUUID: status.uuid,

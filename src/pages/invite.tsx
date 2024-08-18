@@ -44,9 +44,11 @@ const Invite = () => {
         }
 
         send({
-          type: "INVITE",
+          type: "invite",
           msg: {
-            uuid: invite.uuid
+            strangerID: invite.uuid, 
+            yourUUID: status.uuid, 
+            yourNick: status.nick
           }
         })
       }} />

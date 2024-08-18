@@ -20,23 +20,33 @@ const TopBar: FC<TopBarProps> = (props) => {
   const opponent = useOpponent()
 
   return (
-    <>{props.hidden && <div id="_topBar" hidden={props.hidden}>
-    <Link to={props.previousPage}>
-      <img src={"/arrow_back.png"} id="arrow"/>
-    </Link>
+    <>{props.hidden && 
+    <div style={{
+      justifyContent: !status.inRoom ? "left" : "space-around",
+      gap: !status.inRoom ? "2.3rem" : "none",
+      paddingLeft: !status.inRoom ? "2.4rem" : "none"
+    }} id="_topBar" hidden={props.hidden}>
+      <Link to={props.previousPage}>
+        <img src={"/arrow_back.png"} id="arrow"/>
+      </Link>
 
-    <H1 id="NamePage" value={props.pageName}/>
+      <H1 id="NamePage" value={props.pageName}/>
 
-    <Button onClick={() => {
-      send({
-        type: "leave-room",
-        msg: {
-          me: status.uuid,
-          otherPlayer: opponent.uuid
-        }
-      })
-    }} value="LEAVE" className="leave"/>
-  </div>}</>
+      {
+        status.inRoom 
+        &&
+        <Button onClick={() => {
+          send({
+            type: "leave-room",
+            msg: {
+              me: status.uuid,
+              otherPlayer: opponent.uuid
+            }
+          })
+        }} value="LEAVE" className="leave"/> 
+      }
+    </div>
+  }</>
   )
 }
 
